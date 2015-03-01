@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace DataApp.Core.Models
 {
-    public partial class Project:BaseEntity
+    public partial class Expense:BaseEntity
     {
-        public Project()
+        public Expense()
         {
             this.ExpenseItems = new HashSet<ExpenseItem>();
         }
 
-        public string Name { get; set; }
-
+        public virtual Voucher Voucher { get; set; }
         public virtual ICollection<ExpenseItem> ExpenseItems { get; set; }
     }
 }

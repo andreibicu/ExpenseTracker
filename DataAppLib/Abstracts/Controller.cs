@@ -30,4 +30,9 @@ namespace DataApp.Core.Abstracts
             this.dbContext.Dispose();
         }
     }
+
+    public interface IUserController : IAddData<User>, IModifyData<User>
+    {
+        User Login(String username, String password);
+    }
 }

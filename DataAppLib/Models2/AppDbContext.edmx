@@ -1,0 +1,527 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AppDbContext.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AppDbContextStoreContainer">
+    <EntitySet Name="Checks" EntityType="AppDbContext.Store.Checks" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Vouchers" EntityType="AppDbContext.Store.Vouchers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Accounts" EntityType="AppDbContext.Store.Accounts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CheckTransactions" EntityType="AppDbContext.Store.CheckTransactions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Expenses" EntityType="AppDbContext.Store.Expenses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ExpenseItems" EntityType="AppDbContext.Store.ExpenseItems" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Projects" EntityType="AppDbContext.Store.Projects" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CheckCheckTransaction" Association="AppDbContext.Store.CheckCheckTransaction">
+      <End Role="Check" EntitySet="Checks" />
+      <End Role="CheckTransaction" EntitySet="CheckTransactions" />
+    </AssociationSet>
+    <AssociationSet Name="CheckAccount" Association="AppDbContext.Store.CheckAccount">
+      <End Role="Check" EntitySet="Checks" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="VoucherCheckTransaction" Association="AppDbContext.Store.VoucherCheckTransaction">
+      <End Role="Voucher" EntitySet="Vouchers" />
+      <End Role="CheckTransaction" EntitySet="CheckTransactions" />
+    </AssociationSet>
+    <AssociationSet Name="VoucherAccount" Association="AppDbContext.Store.VoucherAccount">
+      <End Role="Voucher" EntitySet="Vouchers" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="ExpenseVoucher" Association="AppDbContext.Store.ExpenseVoucher">
+      <End Role="Expense" EntitySet="Expenses" />
+      <End Role="Voucher" EntitySet="Vouchers" />
+    </AssociationSet>
+    <AssociationSet Name="ExpenseExpenseItem" Association="AppDbContext.Store.ExpenseExpenseItem">
+      <End Role="Expense" EntitySet="Expenses" />
+      <End Role="ExpenseItem" EntitySet="ExpenseItems" />
+    </AssociationSet>
+    <AssociationSet Name="ExpenseItemAccount" Association="AppDbContext.Store.ExpenseItemAccount">
+      <End Role="ExpenseItem" EntitySet="ExpenseItems" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="ProjectExpenseItem" Association="AppDbContext.Store.ProjectExpenseItem">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ExpenseItem" EntitySet="ExpenseItems" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Checks">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IssueDate" Type="datetime" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PayeeAccount_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vouchers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IssueDate" Type="datetime" Nullable="false" />
+    <Property Name="EntryDate" Type="datetime" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="CheckTransaction_Id" Type="int" Nullable="false" />
+    <Property Name="PayeeAccount_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Contact" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CheckTransactions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CheckId" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Expenses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Voucher_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExpenseItems">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExpenseId" Type="int" Nullable="false" />
+    <Property Name="PurchaseDate" Type="datetime" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ORNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Nullable="false" />
+    <Property Name="Category" Type="int" Nullable="false" />
+    <Property Name="CompanyAccount_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Projects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="CheckCheckTransaction">
+    <End Role="Check" Type="AppDbContext.Store.Checks" Multiplicity="1" />
+    <End Role="CheckTransaction" Type="AppDbContext.Store.CheckTransactions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Check">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CheckTransaction">
+        <PropertyRef Name="CheckId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CheckAccount">
+    <End Role="Check" Type="AppDbContext.Store.Checks" Multiplicity="*" />
+    <End Role="Account" Type="AppDbContext.Store.Accounts" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Check">
+        <PropertyRef Name="PayeeAccount_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VoucherCheckTransaction">
+    <End Role="Voucher" Type="AppDbContext.Store.Vouchers" Multiplicity="*" />
+    <End Role="CheckTransaction" Type="AppDbContext.Store.CheckTransactions" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="CheckTransaction">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Voucher">
+        <PropertyRef Name="CheckTransaction_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="VoucherAccount">
+    <End Role="Voucher" Type="AppDbContext.Store.Vouchers" Multiplicity="*" />
+    <End Role="Account" Type="AppDbContext.Store.Accounts" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Voucher">
+        <PropertyRef Name="PayeeAccount_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ExpenseVoucher">
+    <End Role="Expense" Type="AppDbContext.Store.Expenses" Multiplicity="*" />
+    <End Role="Voucher" Type="AppDbContext.Store.Vouchers" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Voucher">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Expense">
+        <PropertyRef Name="Voucher_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ExpenseExpenseItem">
+    <End Role="Expense" Type="AppDbContext.Store.Expenses" Multiplicity="1" />
+    <End Role="ExpenseItem" Type="AppDbContext.Store.ExpenseItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Expense">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ExpenseItem">
+        <PropertyRef Name="ExpenseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ExpenseItemAccount">
+    <End Role="ExpenseItem" Type="AppDbContext.Store.ExpenseItems" Multiplicity="*" />
+    <End Role="Account" Type="AppDbContext.Store.Accounts" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ExpenseItem">
+        <PropertyRef Name="CompanyAccount_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProjectExpenseItem">
+    <End Role="Project" Type="AppDbContext.Store.Projects" Multiplicity="1" />
+    <End Role="ExpenseItem" Type="AppDbContext.Store.ExpenseItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ExpenseItem">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="AppDbContext" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="AppDbContextContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Checks" EntityType="AppDbContext.Check" />
+          <EntitySet Name="Vouchers" EntityType="AppDbContext.Voucher" />
+          <EntitySet Name="Accounts" EntityType="AppDbContext.Account" />
+          <EntitySet Name="CheckTransactions" EntityType="AppDbContext.CheckTransaction" />
+          <EntitySet Name="Expenses" EntityType="AppDbContext.Expense" />
+          <EntitySet Name="ExpenseItems" EntityType="AppDbContext.ExpenseItem" />
+          <EntitySet Name="Projects" EntityType="AppDbContext.Project" />
+          <AssociationSet Name="CheckCheckTransaction" Association="AppDbContext.CheckCheckTransaction">
+            <End Role="Check" EntitySet="Checks" />
+            <End Role="CheckTransaction" EntitySet="CheckTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="CheckAccount" Association="AppDbContext.CheckAccount">
+            <End Role="Check" EntitySet="Checks" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="VoucherCheckTransaction" Association="AppDbContext.VoucherCheckTransaction">
+            <End Role="Voucher" EntitySet="Vouchers" />
+            <End Role="CheckTransaction" EntitySet="CheckTransactions" />
+          </AssociationSet>
+          <AssociationSet Name="VoucherAccount" Association="AppDbContext.VoucherAccount">
+            <End Role="Voucher" EntitySet="Vouchers" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="ExpenseVoucher" Association="AppDbContext.ExpenseVoucher">
+            <End Role="Expense" EntitySet="Expenses" />
+            <End Role="Voucher" EntitySet="Vouchers" />
+          </AssociationSet>
+          <AssociationSet Name="ExpenseExpenseItem" Association="AppDbContext.ExpenseExpenseItem">
+            <End Role="Expense" EntitySet="Expenses" />
+            <End Role="ExpenseItem" EntitySet="ExpenseItems" />
+          </AssociationSet>
+          <AssociationSet Name="ExpenseItemAccount" Association="AppDbContext.ExpenseItemAccount">
+            <End Role="ExpenseItem" EntitySet="ExpenseItems" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="ProjectExpenseItem" Association="AppDbContext.ProjectExpenseItem">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ExpenseItem" EntitySet="ExpenseItems" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Check">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="IssueDate" Type="DateTime" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Notes" Type="String" Nullable="false" />
+          <NavigationProperty Name="CheckTransactions" Relationship="AppDbContext.CheckCheckTransaction" FromRole="Check" ToRole="CheckTransaction" />
+          <NavigationProperty Name="PayeeAccount" Relationship="AppDbContext.CheckAccount" FromRole="Check" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="IssueDate" Type="DateTime" Nullable="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="CheckTransaction" Relationship="AppDbContext.VoucherCheckTransaction" FromRole="Voucher" ToRole="CheckTransaction" />
+          <NavigationProperty Name="PayeeAccount" Relationship="AppDbContext.VoucherAccount" FromRole="Voucher" ToRole="Account" />
+          <NavigationProperty Name="Expense" Relationship="AppDbContext.ExpenseVoucher" FromRole="Voucher" ToRole="Expense" />
+          <Property Name="Type" Type="AppDbContext.VoucherType" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Contact" Type="String" Nullable="false" />
+          <Property Name="Notes" Type="String" Nullable="false" />
+          <NavigationProperty Name="Check" Relationship="AppDbContext.CheckAccount" FromRole="Account" ToRole="Check" />
+          <NavigationProperty Name="Voucher" Relationship="AppDbContext.VoucherAccount" FromRole="Account" ToRole="Voucher" />
+          <NavigationProperty Name="ExpenseItem" Relationship="AppDbContext.ExpenseItemAccount" FromRole="Account" ToRole="ExpenseItem" />
+        </EntityType>
+        <EntityType Name="CheckTransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="CheckId" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" />
+          <NavigationProperty Name="Check" Relationship="AppDbContext.CheckCheckTransaction" FromRole="CheckTransaction" ToRole="Check" />
+          <NavigationProperty Name="Voucher" Relationship="AppDbContext.VoucherCheckTransaction" FromRole="CheckTransaction" ToRole="Voucher" />
+        </EntityType>
+        <EntityType Name="Expense">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <NavigationProperty Name="Voucher" Relationship="AppDbContext.ExpenseVoucher" FromRole="Expense" ToRole="Voucher" />
+          <NavigationProperty Name="ExpenseItems" Relationship="AppDbContext.ExpenseExpenseItem" FromRole="Expense" ToRole="ExpenseItem" />
+        </EntityType>
+        <EntityType Name="ExpenseItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="ExpenseId" Type="Int32" Nullable="false" />
+          <Property Name="PurchaseDate" Type="DateTime" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="ORNumber" Type="String" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" />
+          <Property Name="Category" Type="AppDbContext.ExpenseCategory" Nullable="false" />
+          <NavigationProperty Name="Expense" Relationship="AppDbContext.ExpenseExpenseItem" FromRole="ExpenseItem" ToRole="Expense" />
+          <NavigationProperty Name="CompanyAccount" Relationship="AppDbContext.ExpenseItemAccount" FromRole="ExpenseItem" ToRole="Account" />
+          <NavigationProperty Name="Project" Relationship="AppDbContext.ProjectExpenseItem" FromRole="ExpenseItem" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="ExpenseItems" Relationship="AppDbContext.ProjectExpenseItem" FromRole="Project" ToRole="ExpenseItem" />
+        </EntityType>
+        <Association Name="CheckCheckTransaction">
+          <End Type="AppDbContext.Check" Role="Check" Multiplicity="1" />
+          <End Type="AppDbContext.CheckTransaction" Role="CheckTransaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Check">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CheckTransaction">
+              <PropertyRef Name="CheckId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CheckAccount">
+          <End Type="AppDbContext.Check" Role="Check" Multiplicity="1" />
+          <End Type="AppDbContext.Account" Role="Account" Multiplicity="1" />
+        </Association>
+        <Association Name="VoucherCheckTransaction">
+          <End Type="AppDbContext.Voucher" Role="Voucher" Multiplicity="1" />
+          <End Type="AppDbContext.CheckTransaction" Role="CheckTransaction" Multiplicity="1" />
+        </Association>
+        <Association Name="VoucherAccount">
+          <End Type="AppDbContext.Voucher" Role="Voucher" Multiplicity="1" />
+          <End Type="AppDbContext.Account" Role="Account" Multiplicity="1" />
+        </Association>
+        <Association Name="ExpenseVoucher">
+          <End Type="AppDbContext.Expense" Role="Expense" Multiplicity="1" />
+          <End Type="AppDbContext.Voucher" Role="Voucher" Multiplicity="1" />
+        </Association>
+        <Association Name="ExpenseExpenseItem">
+          <End Type="AppDbContext.Expense" Role="Expense" Multiplicity="1" />
+          <End Type="AppDbContext.ExpenseItem" Role="ExpenseItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expense">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpenseItem">
+              <PropertyRef Name="ExpenseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ExpenseItemAccount">
+          <End Type="AppDbContext.ExpenseItem" Role="ExpenseItem" Multiplicity="1" />
+          <End Type="AppDbContext.Account" Role="Account" Multiplicity="1" />
+        </Association>
+        <Association Name="ProjectExpenseItem">
+          <End Type="AppDbContext.Project" Role="Project" Multiplicity="1" />
+          <End Type="AppDbContext.ExpenseItem" Role="ExpenseItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpenseItem">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="ExpenseCategory" />
+        <EnumType Name="VoucherType" />
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AppDbContextStoreContainer" CdmEntityContainer="AppDbContextContainer">
+    <EntitySetMapping Name="Checks">
+      <EntityTypeMapping TypeName="IsTypeOf(AppDbContext.Check)">
+        <MappingFragment StoreEntitySet="Checks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vouchers">
+      <EntityTypeMapping TypeName="IsTypeOf(AppDbContext.Voucher)">
+        <MappingFragment StoreEntitySet="Vouchers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="IsTypeOf(AppDbContext.Account)">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Contact" ColumnName="Contact" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CheckTransactions">
+      <EntityTypeMapping TypeName="IsTypeOf(AppDbContext.CheckTransaction)">
+        <MappingFragment StoreEntitySet="CheckTransactions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CheckId" ColumnName="CheckId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Expenses">
+      <EntityTypeMapping TypeName="IsTypeOf(AppDbContext.Expense)">
+        <MappingFragment StoreEntitySet="Expenses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpenseItems">
+      <EntityTypeMapping TypeName="IsTypeOf(AppDbContext.ExpenseItem)">
+        <MappingFragment StoreEntitySet="ExpenseItems">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ExpenseId" ColumnName="ExpenseId" />
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ORNumber" ColumnName="ORNumber" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="IsTypeOf(AppDbContext.Project)">
+        <MappingFragment StoreEntitySet="Projects">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="CheckAccount" TypeName="AppDbContext.CheckAccount" StoreEntitySet="Checks">
+      <EndProperty Name="Account">
+        <ScalarProperty Name="Id" ColumnName="PayeeAccount_Id" />
+      </EndProperty>
+      <EndProperty Name="Check">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VoucherCheckTransaction" TypeName="AppDbContext.VoucherCheckTransaction" StoreEntitySet="Vouchers">
+      <EndProperty Name="CheckTransaction">
+        <ScalarProperty Name="Id" ColumnName="CheckTransaction_Id" />
+      </EndProperty>
+      <EndProperty Name="Voucher">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="VoucherAccount" TypeName="AppDbContext.VoucherAccount" StoreEntitySet="Vouchers">
+      <EndProperty Name="Account">
+        <ScalarProperty Name="Id" ColumnName="PayeeAccount_Id" />
+      </EndProperty>
+      <EndProperty Name="Voucher">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ExpenseVoucher" TypeName="AppDbContext.ExpenseVoucher" StoreEntitySet="Expenses">
+      <EndProperty Name="Voucher">
+        <ScalarProperty Name="Id" ColumnName="Voucher_Id" />
+      </EndProperty>
+      <EndProperty Name="Expense">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="ExpenseItemAccount" TypeName="AppDbContext.ExpenseItemAccount" StoreEntitySet="ExpenseItems">
+      <EndProperty Name="Account">
+        <ScalarProperty Name="Id" ColumnName="CompanyAccount_Id" />
+      </EndProperty>
+      <EndProperty Name="ExpenseItem">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
