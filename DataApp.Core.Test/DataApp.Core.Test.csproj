@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="IRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IRepositoryFactoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DataAppLib\DataApp.Core.csproj">
