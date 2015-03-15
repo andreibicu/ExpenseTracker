@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DataApp.Core.Abstracts;
 using DataApp.Core.DAL;
 using DataApp.Core.Models;
-using System.Collections.Generic;
+
 namespace DataApp.Core.Test
 {
     [TestClass]
@@ -25,11 +25,11 @@ namespace DataApp.Core.Test
         public void Add()
         {
             //arrange
-            Project project = new Project();
+            var project = new Project();
             project.Name = "test";
 
             //act
-            
+
             //assert
             Assert.IsTrue(this.target.Add(project));
         }
@@ -38,7 +38,7 @@ namespace DataApp.Core.Test
         public void Update()
         {
             //arrange
-            Project project = new Project();
+            var project = new Project();
 
             //act
             this.target.Add(project);
@@ -52,7 +52,7 @@ namespace DataApp.Core.Test
         public void Delete()
         {
             //arrange
-            Project project = new Project();
+            var project = new Project();
             project.Name = "To Be Deleted";
 
             //act
@@ -66,10 +66,8 @@ namespace DataApp.Core.Test
         public void Get()
         {
             //arrange
-            Project project = null;
-
             //act
-            project = this.target.Get(p => p.ID > 0); 
+            var project = this.target.Get(p => p.ID > 0);
 
             //assert
             Assert.IsNotNull(project);
@@ -79,10 +77,8 @@ namespace DataApp.Core.Test
         public void GetAll()
         {
             //arrange
-            List<Project> projects = null;
-
             //act
-            projects = this.target.GetAll();
+            var projects = this.target.GetAll();
 
             //assert
             Assert.IsNotNull(projects);
