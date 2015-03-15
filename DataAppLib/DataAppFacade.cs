@@ -22,6 +22,6 @@ namespace DataApp.Core
             this.dbContext = new DataAppContext();
         }
 
-        public IRepository<Project> ProjectRepo { get { return this.factory.CreateRepository<Project>(this.dbContext); } }
+        public IRepository<User> ProjectRepo { get { return this.factory.CreateRepository<User>(this.dbContext); } }
     }
 }

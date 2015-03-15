@@ -59,48 +59,11 @@
     <Compile Include="DAL\DataAppContext.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Factories\RepoFactory.cs" />
-    <Compile Include="Models2\Account.cs">
-      <DependentUpon>AppDbContext.tt</DependentUpon>
+    <Compile Include="Migrations\201503030235032_InitialCreate.cs" />
+    <Compile Include="Migrations\201503030235032_InitialCreate.Designer.cs">
+      <DependentUpon>201503030235032_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models2\AppDbContext.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppDbContext.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models2\AppDbContext.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models2\AppDbContext.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AppDbContext.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models2\Check.cs">
-      <DependentUpon>AppDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models2\CheckTransaction.cs">
-      <DependentUpon>AppDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models2\Expense.cs">
-      <DependentUpon>AppDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models2\ExpenseCategory.cs">
-      <DependentUpon>AppDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models2\ExpenseItem.cs">
-      <DependentUpon>AppDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models2\Project.cs">
-      <DependentUpon>AppDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models2\Voucher.cs">
-      <DependentUpon>AppDbContext.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models2\VoucherType.cs">
-      <DependentUpon>AppDbContext.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BaseEntity.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -108,31 +71,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Models2\AppDbContext.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AppDbContext.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Models2\AppDbContext.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AppDbContext.Context.cs</LastGenOutput>
-      <DependentUpon>AppDbContext.edmx</DependentUpon>
-    </None>
-    <None Include="Models2\AppDbContext.edmx.diagram">
-      <DependentUpon>AppDbContext.edmx</DependentUpon>
-    </None>
-    <None Include="Models2\AppDbContext.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AppDbContext.cs</LastGenOutput>
-      <DependentUpon>AppDbContext.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="Models2\AppDbContext.edmx.sql" />
+    <EmbeddedResource Include="Migrations\201503030235032_InitialCreate.resx">
+      <DependentUpon>201503030235032_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

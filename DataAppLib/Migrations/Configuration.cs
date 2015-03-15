@@ -9,7 +9,8 @@ namespace DataApp.Core.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            ContextKey = "DataApp.Core.DAL.DataAppContext";
         }
 
         protected override void Seed(DataApp.Core.DAL.DataAppContext context)
