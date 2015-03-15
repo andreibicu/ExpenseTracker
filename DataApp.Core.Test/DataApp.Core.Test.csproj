@@ -62,14 +62,14 @@
     <Compile Include="IRepositoryFactoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DataAppLib\DataApp.Core.csproj">
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataApp.Core\DataApp.Core.csproj">
       <Project>{eb361c24-d8ae-49cc-ae4f-59df332cf191}</Project>
       <Name>DataApp.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
