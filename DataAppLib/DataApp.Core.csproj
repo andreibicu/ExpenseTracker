@@ -101,16 +101,8 @@
     <Compile Include="Models2\VoucherType.cs">
       <DependentUpon>AppDbContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\BaseEntity.cs" />
-    <Compile Include="Models\Expense.cs" />
-    <Compile Include="Models\ExpenseItem.cs" />
-    <Compile Include="Models\Project.cs" />
-    <Compile Include="Models\TransactionAccount.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Models\Check.cs" />
-    <Compile Include="Models\CheckTransaction.cs" />
-    <Compile Include="Models\Voucher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\GenericRepository.cs" />
   </ItemGroup>
@@ -138,9 +130,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\ViewModels\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Models2\AppDbContext.edmx.sql" />
   </ItemGroup>
