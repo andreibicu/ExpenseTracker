@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 
 namespace DataApp.Core.Abstracts
 {
-    public interface IRepository<T> :IReadData<T>,IAddData<T>,IModifyData<T>,IRemoveData<T>,  IDisposable where T : BaseEntity 
+    public interface IRepository<T> :
+        IReadData<T>,IAddData<T>,IModifyData<T>,IRemoveData<T>,  //CRUD
+        IReadDataAsync<T>,//CRUD ASYNC
+        IDisposable where T : BaseEntity 
     {
         void SaveChanges();
     }
@@ -31,5 +34,11 @@ namespace DataApp.Core.Abstracts
     public interface IRemoveData<T> where T : BaseEntity
     {
         Boolean Delete(T entity);
+    }
+
+    public interface IReadDataAsync<T> where T : BaseEntity
+    {
+        //Task<T> GetAsync(Func<T, Boolean> filter); //Problem with dbContext.Set<T>().FirstOrDefaultAsync(filter);
+        Task<List<T>> GetAllAsync(Func<T, Boolean> filter = null);
     }
 }

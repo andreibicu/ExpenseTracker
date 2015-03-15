@@ -18,7 +18,7 @@ namespace DataApp.Core.Repositories
             this.dbContext = context;
         }
 
-
+        #region CRUD
         public bool Add(T entity)
         {
             this.dbContext.Set<T>().Add(entity);
@@ -48,7 +48,7 @@ namespace DataApp.Core.Repositories
 
         public List<T> GetAll(Func<T, bool> filter = null)
         {
-            if(filter == null)
+            if (filter == null)
                 return this.dbContext.Set<T>().ToList();
             else
                 return this.dbContext.Set<T>().Where(filter).ToList();
@@ -57,11 +57,24 @@ namespace DataApp.Core.Repositories
         public void SaveChanges()
         {
             this.dbContext.SaveChanges();
-        }
+        } 
+        #endregion
+
+        #region CRUD ASYNC
+        public async Task<List<T>> GetAllAsync(Func<T, bool> filter = null)
+        {
+            if (filter == null)
+                return await this.dbContext.Set<T>().ToListAsync();
+            else
+                return this.dbContext.Set<T>().Where(filter).ToList();
+        } 
+
+        #endregion
 
         public void Dispose()
         {
             GC.SuppressFinalize(this);
         }
+
     }
 }

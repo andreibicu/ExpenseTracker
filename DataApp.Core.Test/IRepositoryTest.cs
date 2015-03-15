@@ -34,6 +34,7 @@ namespace DataApp.Core.Test
             entity.Password = "New";
         }
 
+        #region Test CRUD
         [TestMethod]
         public void Add()
         {
@@ -72,9 +73,9 @@ namespace DataApp.Core.Test
         {
             //arrange
             //act
-            var user = this.repository.Get(p => p.ID > 0);
+            var entity = this.repository.Get(p => p.ID > 0);
             //assert
-            Assert.IsNotNull(user);
+            Assert.IsNotNull(entity);
         }
 
         [TestMethod]
@@ -82,9 +83,40 @@ namespace DataApp.Core.Test
         {
             //arrange
             //act
-            var user = this.repository.GetAll();
+            var users = this.repository.GetAll();
             //assert
-            Assert.IsNotNull(user);
+            Assert.IsNotNull(users);
         }
+
+        [TestMethod]
+        public void GetAllWithFilter()
+        {
+            //arrange
+            //act
+            var users = this.repository.GetAll(u => u.ID > 1);
+            //assert
+            Assert.IsNotNull(users);
+        } 
+        #endregion
+
+        #region Test CRUD ASYNC
+        [TestMethod]
+        public void GetAllAsync()
+        {
+            var entities = this.repository.GetAllAsync().Result;
+            Assert.IsNotNull(entities);
+        }
+
+        [TestMethod]
+        public void GetAllWithFilterAsync()
+        {
+            //arrange
+            //act
+            var entities = this.repository.GetAllAsync(u => u.ID > 1).Result;
+            //assert
+            Assert.IsNotNull(entities);
+        } 
+        #endregion
+
     }
 }
