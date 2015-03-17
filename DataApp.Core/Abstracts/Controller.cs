@@ -23,6 +23,7 @@ namespace DataApp.Core.Abstracts
         {
             this.repo.Dispose();
             this.dbContext.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 
