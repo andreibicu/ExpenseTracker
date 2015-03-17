@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataApp.Core.Abstracts;
+﻿using DataApp.Core.Abstracts;
 using DataApp.Core.Repositories;
 namespace DataApp.Core.Factories
 {

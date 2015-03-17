@@ -1,7 +1,4 @@
-using System;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
-using System.Linq;
 using DataApp.Core.Models;
 namespace DataApp.Core.DAL
 {

@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity;
-using DataApp.Core.Abstracts;
 using DataApp.Core.DAL;
-using DataApp.Core.Models;
 using DataApp.Core.Factories;
+using DataApp.Core.Models;
 
 namespace DataApp.Core.Abstracts
 {

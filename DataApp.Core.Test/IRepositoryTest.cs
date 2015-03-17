@@ -1,8 +1,7 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataApp.Core.Abstracts;
+﻿using DataApp.Core.Abstracts;
 using DataApp.Core.DAL;
 using DataApp.Core.Models;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DataApp.Core.Test
 {
