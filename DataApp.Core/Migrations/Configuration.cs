@@ -1,6 +1,7 @@
 namespace DataApp.Core.Migrations
 {
     using System.Data.Entity.Migrations;
+    using DataApp.Core.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<DataApp.Core.DAL.DataAppContext>
     {
@@ -24,6 +25,11 @@ namespace DataApp.Core.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            context.Users.AddOrUpdate(
+                u => u.Username,
+                new User { Username = "root",Password="toor"}
+            );
         }
     }
 }
