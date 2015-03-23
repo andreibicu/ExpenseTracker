@@ -3,7 +3,7 @@ using DataApp.Core.Models;
 
 namespace DataApp.Core.Controllers
 {
-    public class UserController : Controller<User>
+    public class UserController : Controller<User> 
     {
 
         #region IUserController Members

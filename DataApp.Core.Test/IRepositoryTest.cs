@@ -72,7 +72,7 @@ namespace DataApp.Core.Test
         {
             //arrange
             //act
-            var entity = this.repository.Get(p => p.ID > 0);
+            var entity = this.repository.Get(p => p.Id > 0);
             //assert
             Assert.IsNotNull(entity);
         }
@@ -92,7 +92,7 @@ namespace DataApp.Core.Test
         {
             //arrange
             //act
-            var users = this.repository.GetAll(u => u.ID > 1);
+            var users = this.repository.GetAll(u => u.Id > 1);
             //assert
             Assert.IsNotNull(users);
         } 
@@ -111,7 +111,7 @@ namespace DataApp.Core.Test
         {
             //arrange
             //act
-            var entities = this.repository.GetAllAsync(u => u.ID > 1).Result;
+            var entities = this.repository.GetAllAsync(u => u.Id > 1).Result;
             //assert
             Assert.IsNotNull(entities);
         } 

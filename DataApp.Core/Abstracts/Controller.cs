@@ -6,7 +6,7 @@ using DataApp.Core.Models;
 
 namespace DataApp.Core.Abstracts
 {
-    public abstract class Controller<T>: IDisposable where T : BaseEntity 
+    public abstract class Controller<T>: IDisposable where T : class
     {
         protected IRepository<T> repo = null;
         protected DbContext dbContext = null;

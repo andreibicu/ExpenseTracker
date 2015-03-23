@@ -8,7 +8,7 @@ using DataApp.Core.Models;
 
 namespace DataApp.Core.Repositories
 {
-    class GenericRepository<T> : IRepository<T> where T : BaseEntity
+    class GenericRepository<T> : IRepository<T> where T : class
     {
         protected DbContext dbContext = null;
 

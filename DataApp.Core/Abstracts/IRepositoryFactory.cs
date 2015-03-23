@@ -5,6 +5,6 @@ namespace DataApp.Core.Abstracts
 {
     public interface IRepositoryFactory
     {
-        IRepository<T> CreateRepository<T>(DbContext dbContext) where T : BaseEntity;
+        IRepository<T> CreateRepository<T>(DbContext dbContext) where T : class;
     }
 }

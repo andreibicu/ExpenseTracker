@@ -12,10 +12,15 @@ namespace DataApp.Core.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class CheckTransaction
     {
         public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public decimal Amount { get; set; }
+        public string Notes { get; set; }
+        public int VoucherId { get; set; }
+        public int CheckId { get; set; }
+    
+        public virtual Voucher Voucher { get; set; }
+        public virtual Check Check { get; set; }
     }
 }

@@ -12,10 +12,21 @@ namespace DataApp.Core.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class TransactionAccount
     {
+        public TransactionAccount()
+        {
+            this.Vouchers = new List<Voucher>();
+            this.Checks = new List<Check>();
+            this.ExpenseItems = new List<ExpenseItem>();
+        }
+    
         public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string Name { get; set; }
+        public string Notes { get; set; }
+
+        public virtual List<Voucher> Vouchers { get; set; }
+        public virtual List<Check> Checks { get; set; }
+        public virtual List<ExpenseItem> ExpenseItems { get; set; }
     }
 }

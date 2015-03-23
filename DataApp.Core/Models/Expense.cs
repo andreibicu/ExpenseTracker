@@ -12,10 +12,17 @@ namespace DataApp.Core.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Expense
     {
+        public Expense()
+        {
+            this.ExpenseItems = new List<ExpenseItem>();
+        }
+    
         public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public int VoucherId { get; set; }
+    
+        public virtual Voucher Voucher { get; set; }
+        public virtual List<ExpenseItem> ExpenseItems { get; set; }
     }
 }

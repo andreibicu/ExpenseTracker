@@ -21,6 +21,16 @@ namespace DataApp.Core.DAL
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
         public virtual DbSet<User> Users { get; set; }
+
+        public virtual DbSet<TransactionAccount> TransactionAccounts { get; set; }
+        public virtual DbSet<Voucher> Vouchers { get; set; }
+        public virtual DbSet<Check> Checks { get; set; }
+        public virtual DbSet<CheckTransaction> CheckTransactions { get; set; }
+        public virtual DbSet<ExpenseItem> ExpenseItems { get; set; }
+        public virtual DbSet<Expense> Expenses { get; set; }
+        public virtual DbSet<Project> Projects { get; set; }
+
+
     }
 
 }

@@ -12,10 +12,13 @@ namespace DataApp.Core.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class Project
     {
         public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
+        public string Name { get; set; }
+        public string Notes { get; set; }
+        public int ExpenseItemId { get; set; }
+    
+        public virtual ExpenseItem ExpenseItem { get; set; }
     }
 }

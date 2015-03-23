@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataApp.Core.Test", "DataAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataApp.Core", "DataApp.Core\DataApp.Core.csproj", "{EB361C24-D8AE-49CC-AE4F-59DF332CF191}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{09255A04-8AA0-459E-959E-90D69D295074}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EB361C24-D8AE-49CC-AE4F-59DF332CF191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB361C24-D8AE-49CC-AE4F-59DF332CF191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB361C24-D8AE-49CC-AE4F-59DF332CF191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09255A04-8AA0-459E-959E-90D69D295074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09255A04-8AA0-459E-959E-90D69D295074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09255A04-8AA0-459E-959E-90D69D295074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09255A04-8AA0-459E-959E-90D69D295074}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

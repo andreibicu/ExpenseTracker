@@ -1,14 +1,15 @@
 namespace DataApp.Core.Migrations
 {
+    using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using DataApp.Core.Models;
+    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<DataApp.Core.DAL.DataAppContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
-            ContextKey = "DataApp.Core.DAL.DataAppContext";
         }
 
         protected override void Seed(DataApp.Core.DAL.DataAppContext context)
@@ -25,11 +26,6 @@ namespace DataApp.Core.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-
-            context.Users.AddOrUpdate(
-                u => u.Username,
-                new User { Username = "root",Password="toor"}
-            );
         }
     }
 }
