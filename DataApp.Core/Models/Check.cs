@@ -11,6 +11,7 @@ namespace DataApp.Core.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class Check
     {
@@ -26,6 +27,8 @@ namespace DataApp.Core.Models
         public int TransactionAccountId { get; set; }
 
         public virtual List<CheckTransaction> CheckTransactions { get; set; }
-        public virtual TransactionAccount TransactionAccount { get; set; }
+        //public virtual TransactionAccount TransactionAccount { get; set; }
+        [NotMapped]
+        public TransactionAccount TransactionAccount { get; set; }
     }
 }

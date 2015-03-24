@@ -60,13 +60,13 @@ namespace DataApp.Core.Repositories
         #endregion
 
         #region CRUD ASYNC
-        public async Task<List<T>> GetAllAsync(Func<T, bool> filter = null)
-        {
-            if (filter == null)
-                return await this.dbContext.Set<T>().ToListAsync();
-            else
-                return this.dbContext.Set<T>().Where(filter).ToList();
-        } 
+        //public async Task<List<T>> GetAllAsync(Func<T, bool> filter = null)
+        //{
+        //    if (filter == null)
+        //        return await this.dbContext.Set<T>().ToListAsync();
+        //    else
+        //        return this.dbContext.Set<T>().Where(filter).ToList();
+        //} 
 
         #endregion
 

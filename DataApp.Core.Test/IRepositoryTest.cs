@@ -99,22 +99,22 @@ namespace DataApp.Core.Test
         #endregion
 
         #region Test CRUD ASYNC
-        [TestMethod]
-        public void GetAllAsync()
-        {
-            var entities = this.repository.GetAllAsync().Result;
-            Assert.IsNotNull(entities);
-        }
+        //[TestMethod]
+        //public void GetAllAsync()
+        //{
+        //    var entities = this.repository.GetAllAsync().Result;
+        //    Assert.IsNotNull(entities);
+        //}
 
-        [TestMethod]
-        public void GetAllWithFilterAsync()
-        {
-            //arrange
-            //act
-            var entities = this.repository.GetAllAsync(u => u.Id > 1).Result;
-            //assert
-            Assert.IsNotNull(entities);
-        } 
+        //[TestMethod]
+        //public void GetAllWithFilterAsync()
+        //{
+        //    //arrange
+        //    //act
+        //    var entities = this.repository.GetAllAsync(u => u.Id > 1).Result;
+        //    //assert
+        //    Assert.IsNotNull(entities);
+        //} 
         #endregion
 
     }

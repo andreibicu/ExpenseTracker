@@ -7,7 +7,7 @@ namespace DataApp.Core.Abstracts
 {
     public interface IRepository<T> :
         IReadData<T>,IAddData<T>,IModifyData<T>,IRemoveData<T>,  //CRUD
-        IReadDataAsync<T>,//CRUD ASYNC
+        //IReadDataAsync<T>,//CRUD ASYNC
         IDisposable where T : class  
     {
         void SaveChanges();
@@ -34,9 +34,9 @@ namespace DataApp.Core.Abstracts
         Boolean Delete(T entity);
     }
 
-    public interface IReadDataAsync<T> where T : class
-    {
-        //Task<T> GetAsync(Func<T, Boolean> filter); //Problem with dbContext.Set<T>().FirstOrDefaultAsync(filter);
-        Task<List<T>> GetAllAsync(Func<T, Boolean> filter = null);
-    }
+    //public interface IReadDataAsync<T> where T : class
+    //{
+    //    //Task<T> GetAsync(Func<T, Boolean> filter); //Problem with dbContext.Set<T>().FirstOrDefaultAsync(filter);
+    //    Task<List<T>> GetAllAsync(Func<T, Boolean> filter = null);
+    //}
 }

@@ -12,7 +12,7 @@ namespace DataApp.Core.Abstracts
         protected DbContext dbContext = null;
         protected IRepositoryFactory factory = null;
 
-        public Controller()
+        protected Controller()
         {
             this.dbContext = new DataAppContext();
             this.factory = new RepoFactory();

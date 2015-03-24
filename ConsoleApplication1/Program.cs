@@ -11,8 +11,7 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            var x = new UserController();
-            var xx = x.Login("","");
+            DataApp.Core.DAL.DataAppContext db = new DataApp.Core.DAL.DataAppContext();
         }
     }
 }
