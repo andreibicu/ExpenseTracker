@@ -20,7 +20,7 @@ namespace DataApp.Core.Models
         public int VoucherId { get; set; }
         public int CheckId { get; set; }
     
-        public virtual Voucher Voucher { get; set; }
-        public virtual Check Check { get; set; }
+        public  Voucher Voucher { get; set; }
+        public  Check Check { get; set; }
     }
 }

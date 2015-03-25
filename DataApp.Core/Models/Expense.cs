@@ -22,7 +22,7 @@ namespace DataApp.Core.Models
         public int Id { get; set; }
         public int VoucherId { get; set; }
     
-        public virtual Voucher Voucher { get; set; }
-        public virtual List<ExpenseItem> ExpenseItems { get; set; }
+        public  Voucher Voucher { get; set; }
+        public  List<ExpenseItem> ExpenseItems { get; set; }
     }
 }

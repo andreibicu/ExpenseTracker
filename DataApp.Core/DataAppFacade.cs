@@ -4,7 +4,7 @@ using DataApp.Core.Abstracts;
 using DataApp.Core.DAL;
 using DataApp.Core.Factories;
 using DataApp.Core.Models;
-
+using DataApp.Core.Controllers;
 namespace DataApp.Core
 {
     public class DataAppFacade:IDisposable
@@ -18,7 +18,10 @@ namespace DataApp.Core
             this.dbContext = new DataAppContext();
         }
 
-        public IRepository<User> ProjectRepo { get { return this.factory.CreateRepository<User>(this.dbContext); } }
+        public CheckController CheckController { get { return new CheckController(); } }
+        public VoucherController VoucherController { get { return new VoucherController(); } }
+        public ExpenseController ExpenseController { get { return new ExpenseController(); } }
+
 
         #region IDisposable Members
 

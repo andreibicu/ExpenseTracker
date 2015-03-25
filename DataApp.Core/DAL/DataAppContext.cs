@@ -15,6 +15,7 @@ namespace DataApp.Core.DAL
         public DataAppContext()
             : base("DataAppDB")
         {
+            //this.Database.Initialize(force: true);
         }
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 

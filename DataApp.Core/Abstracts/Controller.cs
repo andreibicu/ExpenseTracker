@@ -9,7 +9,7 @@ namespace DataApp.Core.Abstracts
     public abstract class Controller<T>: IDisposable where T : class
     {
         protected IRepository<T> repo = null;
-        protected DbContext dbContext = null;
+        protected DataAppContext dbContext = null;
         protected IRepositoryFactory factory = null;
 
         protected Controller()

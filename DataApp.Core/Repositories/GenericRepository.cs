@@ -42,15 +42,15 @@ namespace DataApp.Core.Repositories
 
         public T Get(Func<T, bool> filter)
         {
-            return this.dbContext.Set<T>().FirstOrDefault(filter);
+            return this.dbContext.Set<T>().AsNoTracking().FirstOrDefault(filter);
         }
 
         public List<T> GetAll(Func<T, bool> filter = null)
         {
             if (filter == null)
-                return this.dbContext.Set<T>().ToList();
+                return this.dbContext.Set<T>().AsNoTracking().ToList();
             else
-                return this.dbContext.Set<T>().Where(filter).ToList();
+                return this.dbContext.Set<T>().AsNoTracking().Where(filter).ToList();
         }
 
         public void SaveChanges()

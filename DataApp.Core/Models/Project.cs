@@ -14,11 +14,15 @@ namespace DataApp.Core.Models
     
     public partial class Project
     {
+        public Project()
+        {
+            this.ExpenseItems = new List<ExpenseItem>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Notes { get; set; }
-        public int ExpenseItemId { get; set; }
     
-        public virtual ExpenseItem ExpenseItem { get; set; }
+        public  List<ExpenseItem> ExpenseItems { get; set; }
     }
 }

@@ -188,8 +188,7 @@ GO
 -- Creating primary key on [Id] in table 'Expenses'
 ALTER TABLE [dbo].[Expenses]
 ADD CONSTRAINT [PK_Expenses]
-    PRIMARY KEY CLUSTERED ([Id] ASC),
-	ON DELETE CASCADE;
+    PRIMARY KEY CLUSTERED ([Id] ASC)
 GO
 
 -- Creating primary key on [Id] in table 'Projects'

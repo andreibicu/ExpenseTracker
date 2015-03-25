@@ -7,11 +7,6 @@ namespace DataApp.Core.Models
     
     public partial class ExpenseItem
     {
-        public ExpenseItem()
-        {
-            this.Projects = new List<Project>();
-        }
-    
         public int Id { get; set; }
         public System.DateTime PurchaseDate { get; set; }
         public string Notes { get; set; }
@@ -20,9 +15,10 @@ namespace DataApp.Core.Models
         public ExpenseCategory Category { get; set; }
         public int ExpenseId { get; set; }
         public int TransactionAccountId { get; set; }
+        public int ProjectId { get; set; }
     
-        public virtual Expense Expense { get; set; }
-        public virtual List<Project> Projects { get; set; }
+        public  Expense Expense { get; set; }
+        public Project Project { get; set; }
         //public virtual TransactionAccount TransactionAccount { get; set; }
         [NotMapped]
         public TransactionAccount TransactionAccount { get; set; }
