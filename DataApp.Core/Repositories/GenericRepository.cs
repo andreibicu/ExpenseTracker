@@ -21,6 +21,7 @@ namespace DataApp.Core.Repositories
         public bool Add(T entity)
         {
             this.dbContext.Set<T>().Add(entity);
+            //added logic
             this.SaveChanges();
             return true;
         }

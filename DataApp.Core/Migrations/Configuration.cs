@@ -31,7 +31,7 @@ namespace DataApp.Core.Migrations
             #region TransactionAccounts
             context.TransactionAccounts.AddOrUpdate(
                 u => u.Id,
-                new TransactionAccount { Id = 1, Name="NA",Notes="Default Account" }
+                new TransactionAccount { Id = 1, Name="N/A",Notes="Default Account" }
             );
 
             context.SaveChanges();
@@ -40,7 +40,7 @@ namespace DataApp.Core.Migrations
             #region Projects
             context.Projects.AddOrUpdate(
                 u => u.Id,
-                new Project { Id = 1,Notes = "Default Check"}
+                new Project { Id = 1,Notes = "Default Project",Name="N/A"}
             );
 
             context.SaveChanges();
@@ -85,7 +85,7 @@ namespace DataApp.Core.Migrations
             #region ExpenseItems
             context.ExpenseItems.AddOrUpdate(
                 u => u.Id,
-                new ExpenseItem { Id = 1, Amount = 0, Notes = "Default Check Transaction", Category=Enums.ExpenseCategory.CashAdvance,ExpenseId = 1,ORNumber="NA",PurchaseDate=DateTime.Now,TransactionAccountId=1,ProjectId=1 }
+                new ExpenseItem { Id = 1, Amount = 0, Notes = "Default Expense Item", Category=Enums.ExpenseCategory.CashAdvance,ExpenseId = 1,ORNumber="NA",PurchaseDate=DateTime.Now,TransactionAccountId=1,ProjectId=1 }
             );
 
             context.SaveChanges();

@@ -18,10 +18,12 @@ namespace DataApp.Core
             this.dbContext = new DataAppContext();
         }
 
+        public UserController UserController { get { return new UserController(); } }
         public CheckController CheckController { get { return new CheckController(); } }
         public VoucherController VoucherController { get { return new VoucherController(); } }
         public ExpenseController ExpenseController { get { return new ExpenseController(); } }
-
+        public ProjectController ProjectController { get { return new ProjectController(); } }
+        
 
         #region IDisposable Members
 

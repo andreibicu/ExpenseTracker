@@ -13,7 +13,7 @@ namespace DataApp.Core.DAL
         // If you wish to target a different database and/or database provider, modify the 'DataAppContext' 
         // connection string in the application configuration file.
         public DataAppContext()
-            : base("DataAppDB")
+            : base("name=DataAppDB")
         {
             //this.Database.Initialize(force: true);
         }
