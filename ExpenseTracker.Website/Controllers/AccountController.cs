@@ -1,6 +1,8 @@
 ﻿using DataApp.Core;
 using DataApp.Core.Controllers;
+using DataApp.Core.DAL;
 using DataApp.Core.Models;
+using ExpenseTracker.Website.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +15,12 @@ namespace ExpenseTracker.Website.Controllers
 {
     public class AccountController : Controller
     {
-        //TestModel db = new TestModel();
+        private DataAppContext db = new DataAppContext();
 
         // GET: Account
         public ActionResult Index()
         {
-            var list = new DataAppFacade().UserController.Login("","");
-            return View(list);
+            return View();
         }
 
         public ActionResult Login()
@@ -28,36 +29,33 @@ namespace ExpenseTracker.Website.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(FormCollection data)
+        public ActionResult Login(LoginVM logindata)//FormCollection data)
         {
-            string username = "";
-            string password = "";
+            //string username = "";
+            //string password = "";
 
-            //fetch data from FormCollection
-            if (data["username"] != null)
-                username = (String)data["username"];
-            if (data["password"] != null)
-                password = (String)data["password"];
+            ////fetch data from FormCollection
+            //if (data["username"] != null)
+            //    username = (String)data["username"];
+            //if (data["password"] != null)
+            //    password = (String)data["password"];
+            if (ModelState.IsValid)
+            {
+                //fetch datails from db
+                var dbFacade = new DataApp.Core.DataAppFacade();
+                User user = dbFacade.UserController.Login(logindata.Username,logindata.Password);
 
-            ////fetch datails from db
-            //User user = this.db.UserController.Login(username, password);
-            //User user = db.Users.SingleOrDefault();
+                if (user != null) 
+                {
+                    FormsAuthentication.SetAuthCookie(user.Username, true);
+                    //redirect to dashboard
+                    return Redirect(Url.Action("Index", "Home"));                
+                }
 
-            ////Return json message if user is null
-            //if(user == null)
-            //    return Json("");
+                ModelState.AddModelError("", "Login data is incorrect!");
+            }
 
-            //set session variables/ Authenticate
-            //String authGuid = Guid.NewGuid().ToString();
-            //Session.Add("authGuid", authGuid);
-            //String userData = new JavaScriptSerializer().Serialize(authGuid);
-            //FormsAuthenticationTicket authTicket = new FormsAuthenticationTicket(1, user.Username, DateTime.Now, DateTime.Now.AddMinutes(30), true, userData);
-            //String encTicket = FormsAuthentication.Encrypt(authTicket);
-            //HttpCookie faCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
-            //Response.Cookies.Add(faCookie);
-
-            //redirect to dashboard
-            return Redirect(Url.Action("Index", "Home"));
+            return View(logindata);
         }
 
         public ActionResult Logout()

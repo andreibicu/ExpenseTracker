@@ -4,21 +4,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<section class="jumbotron">
-    <h3>Login</h3>
-    <form role="form" method="post">
-        <div class="form-group">
-            <label for="email">Username:</label>
-            <input name="username"  type="text" class="form-control" id="username">
-        </div>
-        <div class="form-group">
-            <label for="pwd">Password:</label>
-            <input name="password" type="password" class="form-control" id="password">
-        </div>
-        @*<div class="checkbox">
-            <label><input type="checkbox"> Remember me</label>
-        </div>*@
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</section>
+<section class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <h3>Login</h3>
+        <form role="form" method="post">
+            <div class="form-group col-md-10 col-md-offset-1">
+                <label for="email">Username:</label>
+                <input name="username" type="text" class="form-control" id="username">
+            </div>
+            <div class="form-group col-md-10 col-md-offset-1">
+                <label for="pwd">Password:</label>
+                <input name="password" type="password" class="form-control" id="password">
+            </div>
+            @*<div class="checkbox">
+                    <label><input type="checkbox"> Remember me</label>
+                </div>*@
 
+            <div class="form-group col-md-10 col-md-offset-1">
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            </div>
+        </form>
+    </div>
+</section>
