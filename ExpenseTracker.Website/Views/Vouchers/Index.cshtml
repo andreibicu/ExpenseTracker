@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DataApp.Core.Models.Project>
+﻿@model IEnumerable<DataApp.Core.Models.Voucher>
 
 @{
     ViewBag.Title = "Index";
@@ -13,10 +13,19 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.IsExpense)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AddedOn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IssuedOn)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TransactionAccountId)
         </th>
         <th></th>
     </tr>
@@ -24,10 +33,19 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.IsExpense)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AddedOn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IssuedOn)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransactionAccountId)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

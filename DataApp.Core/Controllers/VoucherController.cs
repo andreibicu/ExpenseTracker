@@ -4,12 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataApp.Core.Abstracts;
+using DataApp.Core.DAL;
 using DataApp.Core.Models;
 
 namespace DataApp.Core.Controllers
 {
     public class VoucherController : Controller<Voucher>, IAddData<Voucher>, IReadData<Voucher>, IModifyData<Voucher>
     {
+        public VoucherController(DataAppContext dbContext)
+            :base(dbContext)
+        {
+        }
+
         public bool Add(Voucher entity)
         {
             return this.repo.Add(entity);

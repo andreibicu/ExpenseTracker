@@ -5,11 +5,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataApp.Core.DAL;
 
 namespace DataApp.Core.Controllers
 {
     public class ProjectController: Controller<Project>,IAddData<Project>,IReadData<Project>,IModifyData<Project>
     {
+        public ProjectController(DataAppContext dbContext)
+            :base(dbContext)
+        {
+        }
 
         public bool Add(Project entity)
         {

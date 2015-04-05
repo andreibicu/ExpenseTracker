@@ -13,107 +13,107 @@ using DataApp.Core.Models;
 namespace ExpenseTracker.Website.Controllers
 {
     [Authorize]
-    public class ProjectsController : Controller
+    public class ChecksController : Controller
     {
         private DataAppContext db = new DataAppContext();
 
-        // GET: Projects
+        // GET: Checks
         public async Task<ActionResult> Index()
         {
-            return View(await db.Projects.ToListAsync());
+            return View(await db.Checks.ToListAsync());
         }
 
-        // GET: Projects/Details/5
+        // GET: Checks/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            Check check = await db.Checks.FindAsync(id);
+            if (check == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(check);
         }
 
-        // GET: Projects/Create
+        // GET: Checks/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Projects/Create
+        // POST: Checks/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Notes")] Project project)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Amount,AddedOn,Notes,TransactionAccountId")] Check check)
         {
             if (ModelState.IsValid)
             {
-                db.Projects.Add(project);
+                db.Checks.Add(check);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(project);
+            return View(check);
         }
 
-        // GET: Projects/Edit/5
+        // GET: Checks/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            Check check = await db.Checks.FindAsync(id);
+            if (check == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(check);
         }
 
-        // POST: Projects/Edit/5
+        // POST: Checks/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Notes")] Project project)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Amount,AddedOn,Notes,TransactionAccountId")] Check check)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(project).State = EntityState.Modified;
+                db.Entry(check).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(project);
+            return View(check);
         }
 
-        // GET: Projects/Delete/5
+        // GET: Checks/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            Check check = await db.Checks.FindAsync(id);
+            if (check == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(check);
         }
 
-        // POST: Projects/Delete/5
+        // POST: Checks/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Project project = await db.Projects.FindAsync(id);
-            db.Projects.Remove(project);
+            Check check = await db.Checks.FindAsync(id);
+            db.Checks.Remove(check);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

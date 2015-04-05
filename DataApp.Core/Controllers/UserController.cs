@@ -1,10 +1,15 @@
 ﻿using DataApp.Core.Abstracts;
+using DataApp.Core.DAL;
 using DataApp.Core.Models;
 
 namespace DataApp.Core.Controllers
 {
     public class UserController : Controller<User> 
     {
+        public UserController(DataAppContext dbContext)
+            :base(dbContext)
+        {
+        }
 
         #region IUserController Members
 

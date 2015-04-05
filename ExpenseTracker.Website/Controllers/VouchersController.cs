@@ -13,107 +13,107 @@ using DataApp.Core.Models;
 namespace ExpenseTracker.Website.Controllers
 {
     [Authorize]
-    public class ProjectsController : Controller
+    public class VouchersController : Controller
     {
         private DataAppContext db = new DataAppContext();
 
-        // GET: Projects
+        // GET: Vouchers
         public async Task<ActionResult> Index()
         {
-            return View(await db.Projects.ToListAsync());
+            return View(await db.Vouchers.ToListAsync());
         }
 
-        // GET: Projects/Details/5
+        // GET: Vouchers/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            Voucher voucher = await db.Vouchers.FindAsync(id);
+            if (voucher == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(voucher);
         }
 
-        // GET: Projects/Create
+        // GET: Vouchers/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Projects/Create
+        // POST: Vouchers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Notes")] Project project)
+        public async Task<ActionResult> Create([Bind(Include = "Id,IsExpense,AddedOn,IssuedOn,Notes,TransactionAccountId")] Voucher voucher)
         {
             if (ModelState.IsValid)
             {
-                db.Projects.Add(project);
+                db.Vouchers.Add(voucher);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(project);
+            return View(voucher);
         }
 
-        // GET: Projects/Edit/5
+        // GET: Vouchers/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            Voucher voucher = await db.Vouchers.FindAsync(id);
+            if (voucher == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(voucher);
         }
 
-        // POST: Projects/Edit/5
+        // POST: Vouchers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Notes")] Project project)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,IsExpense,AddedOn,IssuedOn,Notes,TransactionAccountId")] Voucher voucher)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(project).State = EntityState.Modified;
+                db.Entry(voucher).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(project);
+            return View(voucher);
         }
 
-        // GET: Projects/Delete/5
+        // GET: Vouchers/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            Voucher voucher = await db.Vouchers.FindAsync(id);
+            if (voucher == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(voucher);
         }
 
-        // POST: Projects/Delete/5
+        // POST: Vouchers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Project project = await db.Projects.FindAsync(id);
-            db.Projects.Remove(project);
+            Voucher voucher = await db.Vouchers.FindAsync(id);
+            db.Vouchers.Remove(voucher);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

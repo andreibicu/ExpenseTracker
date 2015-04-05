@@ -13,107 +13,116 @@ using DataApp.Core.Models;
 namespace ExpenseTracker.Website.Controllers
 {
     [Authorize]
-    public class ProjectsController : Controller
+    public class ExpenseItemsController : Controller
     {
         private DataAppContext db = new DataAppContext();
 
-        // GET: Projects
+        // GET: ExpenseItems
         public async Task<ActionResult> Index()
         {
-            return View(await db.Projects.ToListAsync());
+            var expenseItems = db.ExpenseItems.Include(e => e.Expense).Include(e => e.Project);
+            return View(await expenseItems.ToListAsync());
         }
 
-        // GET: Projects/Details/5
+        // GET: ExpenseItems/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            ExpenseItem expenseItem = await db.ExpenseItems.FindAsync(id);
+            if (expenseItem == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(expenseItem);
         }
 
-        // GET: Projects/Create
+        // GET: ExpenseItems/Create
         public ActionResult Create()
         {
+            ViewBag.ExpenseId = new SelectList(db.Expenses, "Id", "Id");
+            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
             return View();
         }
 
-        // POST: Projects/Create
+        // POST: ExpenseItems/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Notes")] Project project)
+        public async Task<ActionResult> Create([Bind(Include = "Id,PurchaseDate,Notes,ORNumber,Amount,Category,ExpenseId,TransactionAccountId,ProjectId")] ExpenseItem expenseItem)
         {
             if (ModelState.IsValid)
             {
-                db.Projects.Add(project);
+                db.ExpenseItems.Add(expenseItem);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(project);
+            ViewBag.ExpenseId = new SelectList(db.Expenses, "Id", "Id", expenseItem.ExpenseId);
+            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", expenseItem.ProjectId);
+            return View(expenseItem);
         }
 
-        // GET: Projects/Edit/5
+        // GET: ExpenseItems/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            ExpenseItem expenseItem = await db.ExpenseItems.FindAsync(id);
+            if (expenseItem == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            ViewBag.ExpenseId = new SelectList(db.Expenses, "Id", "Id", expenseItem.ExpenseId);
+            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", expenseItem.ProjectId);
+            return View(expenseItem);
         }
 
-        // POST: Projects/Edit/5
+        // POST: ExpenseItems/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Notes")] Project project)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,PurchaseDate,Notes,ORNumber,Amount,Category,ExpenseId,TransactionAccountId,ProjectId")] ExpenseItem expenseItem)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(project).State = EntityState.Modified;
+                db.Entry(expenseItem).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(project);
+            ViewBag.ExpenseId = new SelectList(db.Expenses, "Id", "Id", expenseItem.ExpenseId);
+            ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", expenseItem.ProjectId);
+            return View(expenseItem);
         }
 
-        // GET: Projects/Delete/5
+        // GET: ExpenseItems/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            ExpenseItem expenseItem = await db.ExpenseItems.FindAsync(id);
+            if (expenseItem == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(expenseItem);
         }
 
-        // POST: Projects/Delete/5
+        // POST: ExpenseItems/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Project project = await db.Projects.FindAsync(id);
-            db.Projects.Remove(project);
+            ExpenseItem expenseItem = await db.ExpenseItems.FindAsync(id);
+            db.ExpenseItems.Remove(expenseItem);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

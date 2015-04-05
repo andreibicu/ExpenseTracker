@@ -18,6 +18,7 @@ namespace ExpenseTracker.Website.Controllers
         private DataAppContext db = new DataAppContext();
 
         // GET: Account
+        [Authorize]
         public ActionResult Index()
         {
             return View();
@@ -51,13 +52,12 @@ namespace ExpenseTracker.Website.Controllers
                     //redirect to dashboard
                     return Redirect(Url.Action("Index", "Home"));                
                 }
-
-                ModelState.AddModelError("", "Login data is incorrect!");
             }
-
-            return View(logindata);
+            ModelState.AddModelError("", "Login data is incorrect!");
+            return View();
         }
 
+        [Authorize]
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
@@ -65,12 +65,13 @@ namespace ExpenseTracker.Website.Controllers
             return Redirect(Url.Action("Index", "Home"));
         }
 
-
+        [Authorize]
         public ActionResult UpdateAccountDetails()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult ForgotPassword()
         {
             return View();

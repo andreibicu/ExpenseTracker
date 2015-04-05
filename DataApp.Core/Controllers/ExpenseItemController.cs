@@ -4,11 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataApp.Core.Abstracts;
+using DataApp.Core.DAL;
 using DataApp.Core.Models;
 namespace DataApp.Core.Controllers
 {
     public class ExpenseItemController : Controller<ExpenseItem>, IAddData<ExpenseItem>, IReadData<ExpenseItem>, IModifyData<ExpenseItem>
     {
+        public ExpenseItemController(DataAppContext dbContext)
+            :base(dbContext)
+        {
+        }
+
         public bool Add(ExpenseItem entity)
         {
             return this.repo.Add(entity);

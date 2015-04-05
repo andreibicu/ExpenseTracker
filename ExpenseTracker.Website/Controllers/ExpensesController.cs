@@ -13,107 +13,112 @@ using DataApp.Core.Models;
 namespace ExpenseTracker.Website.Controllers
 {
     [Authorize]
-    public class ProjectsController : Controller
+    public class ExpensesController : Controller
     {
         private DataAppContext db = new DataAppContext();
 
-        // GET: Projects
+        // GET: Expenses
         public async Task<ActionResult> Index()
         {
-            return View(await db.Projects.ToListAsync());
+            var expenses = db.Expenses.Include(e => e.Voucher);
+            return View(await expenses.ToListAsync());
         }
 
-        // GET: Projects/Details/5
+        // GET: Expenses/Details/5
         public async Task<ActionResult> Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            Expense expense = await db.Expenses.FindAsync(id);
+            if (expense == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(expense);
         }
 
-        // GET: Projects/Create
+        // GET: Expenses/Create
         public ActionResult Create()
         {
+            ViewBag.VoucherId = new SelectList(db.Vouchers, "Id", "Notes");
             return View();
         }
 
-        // POST: Projects/Create
+        // POST: Expenses/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Notes")] Project project)
+        public async Task<ActionResult> Create([Bind(Include = "Id,VoucherId")] Expense expense)
         {
             if (ModelState.IsValid)
             {
-                db.Projects.Add(project);
+                db.Expenses.Add(expense);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(project);
+            ViewBag.VoucherId = new SelectList(db.Vouchers, "Id", "Notes", expense.VoucherId);
+            return View(expense);
         }
 
-        // GET: Projects/Edit/5
+        // GET: Expenses/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            Expense expense = await db.Expenses.FindAsync(id);
+            if (expense == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            ViewBag.VoucherId = new SelectList(db.Vouchers, "Id", "Notes", expense.VoucherId);
+            return View(expense);
         }
 
-        // POST: Projects/Edit/5
+        // POST: Expenses/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Notes")] Project project)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,VoucherId")] Expense expense)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(project).State = EntityState.Modified;
+                db.Entry(expense).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(project);
+            ViewBag.VoucherId = new SelectList(db.Vouchers, "Id", "Notes", expense.VoucherId);
+            return View(expense);
         }
 
-        // GET: Projects/Delete/5
+        // GET: Expenses/Delete/5
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
-            if (project == null)
+            Expense expense = await db.Expenses.FindAsync(id);
+            if (expense == null)
             {
                 return HttpNotFound();
             }
-            return View(project);
+            return View(expense);
         }
 
-        // POST: Projects/Delete/5
+        // POST: Expenses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Project project = await db.Projects.FindAsync(id);
-            db.Projects.Remove(project);
+            Expense expense = await db.Expenses.FindAsync(id);
+            db.Expenses.Remove(expense);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

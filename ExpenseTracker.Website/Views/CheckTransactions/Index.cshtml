@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DataApp.Core.Models.Project>
+﻿@model IEnumerable<DataApp.Core.Models.CheckTransaction>
 
 @{
     ViewBag.Title = "Index";
@@ -13,7 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Check.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Voucher.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Notes)
@@ -24,7 +30,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.Check.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Voucher.Notes)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Notes)
