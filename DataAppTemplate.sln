@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataApp.Core.Test", "DataAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataApp.Core", "DataApp.Core\DataApp.Core.csproj", "{EB361C24-D8AE-49CC-AE4F-59DF332CF191}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTracker.Website", "ExpenseTracker.Website\ExpenseTracker.Website.csproj", "{BAA66F6E-B3CF-49CC-8BEC-461ECD113850}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpenseTracker.Website.Tests", "ExpenseTracker.Website.Tests\ExpenseTracker.Website.Tests.csproj", "{9710E482-FA76-4BC4-8E7F-698898BD6A33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{EB361C24-D8AE-49CC-AE4F-59DF332CF191}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB361C24-D8AE-49CC-AE4F-59DF332CF191}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB361C24-D8AE-49CC-AE4F-59DF332CF191}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAA66F6E-B3CF-49CC-8BEC-461ECD113850}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAA66F6E-B3CF-49CC-8BEC-461ECD113850}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAA66F6E-B3CF-49CC-8BEC-461ECD113850}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAA66F6E-B3CF-49CC-8BEC-461ECD113850}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9710E482-FA76-4BC4-8E7F-698898BD6A33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9710E482-FA76-4BC4-8E7F-698898BD6A33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9710E482-FA76-4BC4-8E7F-698898BD6A33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9710E482-FA76-4BC4-8E7F-698898BD6A33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
