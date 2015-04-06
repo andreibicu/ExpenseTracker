@@ -20,6 +20,7 @@ namespace ExpenseTracker.Website.Controllers
         // GET: Vouchers
         public async Task<ActionResult> Index()
         {
+            ViewBag.TransactionAccounts = db.TransactionAccounts.ToList();
             return View(await db.Vouchers.ToListAsync());
         }
 
@@ -41,6 +42,7 @@ namespace ExpenseTracker.Website.Controllers
         // GET: Vouchers/Create
         public ActionResult Create()
         {
+            ViewBag.TransactionAccountId = new SelectList(db.TransactionAccounts, "Id", "Name");
             return View();
         }
 
@@ -49,15 +51,16 @@ namespace ExpenseTracker.Website.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,IsExpense,AddedOn,IssuedOn,Notes,TransactionAccountId")] Voucher voucher)
+        public async Task<ActionResult> Create([Bind(Include = "Id,IsExpense,IssuedOn,Notes,TransactionAccountId")] Voucher voucher)
         {
             if (ModelState.IsValid)
             {
+                voucher.AddedOn = DateTime.Now.Date;
                 db.Vouchers.Add(voucher);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.TransactionAccountId = new SelectList(db.TransactionAccounts, "Id", "Name",voucher.TransactionAccountId);
             return View(voucher);
         }
 
@@ -73,6 +76,7 @@ namespace ExpenseTracker.Website.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.TransactionAccountId = new SelectList(db.TransactionAccounts, "Id", "Name",voucher.TransactionAccountId);
             return View(voucher);
         }
 
@@ -89,6 +93,8 @@ namespace ExpenseTracker.Website.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.TransactionAccountId = new SelectList(db.TransactionAccounts, "Id", "Name",voucher.TransactionAccountId);
+
             return View(voucher);
         }
 

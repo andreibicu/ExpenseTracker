@@ -20,6 +20,7 @@ namespace DataApp.Core.Models
         }
     
         public int Id { get; set; }
+        public string Notes { get; set; }
         public int VoucherId { get; set; }
     
         public  Voucher Voucher { get; set; }

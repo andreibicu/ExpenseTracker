@@ -20,6 +20,7 @@ namespace ExpenseTracker.Website.Controllers
         // GET: Checks
         public async Task<ActionResult> Index()
         {
+            ViewBag.TransactionAccounts = db.TransactionAccounts.ToList();
             return View(await db.Checks.ToListAsync());
         }
 
@@ -41,6 +42,7 @@ namespace ExpenseTracker.Website.Controllers
         // GET: Checks/Create
         public ActionResult Create()
         {
+            ViewBag.TransactionAccountId = new SelectList(db.TransactionAccounts, "Id", "Name");
             return View();
         }
 
@@ -49,15 +51,16 @@ namespace ExpenseTracker.Website.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Amount,AddedOn,Notes,TransactionAccountId")] Check check)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Amount,Notes,TransactionAccountId")] Check check)
         {
             if (ModelState.IsValid)
             {
+                check.AddedOn = DateTime.Now.Date;
                 db.Checks.Add(check);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.TransactionAccountId = new SelectList(db.TransactionAccounts, "Id", "Name",check.TransactionAccountId);
             return View(check);
         }
 
@@ -73,6 +76,8 @@ namespace ExpenseTracker.Website.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.TransactionAccountId = new SelectList(db.TransactionAccounts, "Id", "Name",check.TransactionAccountId);
             return View(check);
         }
 
@@ -89,6 +94,7 @@ namespace ExpenseTracker.Website.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
+            ViewBag.TransactionAccountId = new SelectList(db.TransactionAccounts, "Id", "Name", check.TransactionAccountId);
             return View(check);
         }
 

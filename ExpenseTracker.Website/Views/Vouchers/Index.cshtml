@@ -1,8 +1,10 @@
 ﻿@model IEnumerable<DataApp.Core.Models.Voucher>
-
+@using DataApp.Core.Models
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Vouchers";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    List<TransactionAccount> accounts = (List<TransactionAccount>)ViewBag.TransactionAccounts;
 }
 
 <h2>Index</h2>
@@ -25,7 +27,8 @@
             @Html.DisplayNameFor(model => model.Notes)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TransactionAccountId)
+            @*@Html.DisplayNameFor(model => model.TransactionAccountId)*@
+            For(Account)
         </th>
         <th></th>
     </tr>
@@ -45,7 +48,8 @@
             @Html.DisplayFor(modelItem => item.Notes)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TransactionAccountId)
+            @*@Html.DisplayFor(modelItem => item.TransactionAccountId)*@
+            @accounts.SingleOrDefault(acc => acc.Id == item.TransactionAccountId).Name
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

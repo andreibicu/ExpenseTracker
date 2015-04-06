@@ -15,7 +15,7 @@ namespace DataApp.Core.Models
     
         public int Id { get; set; }
         public decimal Amount { get; set; }
-        //[DataType(DataType.)]
+        [DataType(DataType.Date)]
         public System.DateTime AddedOn { get; set; }
         public string Notes { get; set; }
         public int TransactionAccountId { get; set; }

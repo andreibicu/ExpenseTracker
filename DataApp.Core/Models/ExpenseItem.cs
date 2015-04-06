@@ -3,11 +3,13 @@ namespace DataApp.Core.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     
     public partial class ExpenseItem
     {
         public int Id { get; set; }
+        [DataType(DataType.Date)]
         public System.DateTime PurchaseDate { get; set; }
         public string Notes { get; set; }
         public string ORNumber { get; set; }

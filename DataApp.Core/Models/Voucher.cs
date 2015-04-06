@@ -19,6 +19,7 @@ namespace DataApp.Core.Models
         public bool IsExpense { get; set; }
         [DataType(DataType.Date)]
         public System.DateTime AddedOn { get; set; }
+        [DataType(DataType.Date)]
         public System.DateTime IssuedOn { get; set; }
         public string Notes { get; set; }
         public int TransactionAccountId { get; set; }

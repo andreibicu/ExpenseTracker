@@ -21,6 +21,8 @@ namespace ExpenseTracker.Website.Controllers
         public async Task<ActionResult> Index()
         {
             var expenseItems = db.ExpenseItems.Include(e => e.Expense).Include(e => e.Project);
+            ViewBag.TransactionAccounts = db.TransactionAccounts.ToList();
+
             return View(await expenseItems.ToListAsync());
         }
 
@@ -44,6 +46,8 @@ namespace ExpenseTracker.Website.Controllers
         {
             ViewBag.ExpenseId = new SelectList(db.Expenses, "Id", "Id");
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name");
+            ViewBag.TransactionAccountId = new SelectList(db.TransactionAccounts, "Id", "Name");
+
             return View();
         }
 
@@ -63,6 +67,8 @@ namespace ExpenseTracker.Website.Controllers
 
             ViewBag.ExpenseId = new SelectList(db.Expenses, "Id", "Id", expenseItem.ExpenseId);
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", expenseItem.ProjectId);
+            ViewBag.TransactionAccountId = new SelectList(db.TransactionAccounts, "Id", "Name");
+
             return View(expenseItem);
         }
 
@@ -80,6 +86,8 @@ namespace ExpenseTracker.Website.Controllers
             }
             ViewBag.ExpenseId = new SelectList(db.Expenses, "Id", "Id", expenseItem.ExpenseId);
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", expenseItem.ProjectId);
+            ViewBag.TransactionAccountId = new SelectList(db.TransactionAccounts, "Id", "Name");
+
             return View(expenseItem);
         }
 
@@ -98,6 +106,8 @@ namespace ExpenseTracker.Website.Controllers
             }
             ViewBag.ExpenseId = new SelectList(db.Expenses, "Id", "Id", expenseItem.ExpenseId);
             ViewBag.ProjectId = new SelectList(db.Projects, "Id", "Name", expenseItem.ProjectId);
+            ViewBag.TransactionAccountId = new SelectList(db.TransactionAccounts, "Id", "Name");
+
             return View(expenseItem);
         }
 

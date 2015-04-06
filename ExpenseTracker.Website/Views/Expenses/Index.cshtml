@@ -21,6 +21,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Notes)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Voucher.Notes)
         </td>
         <td>
