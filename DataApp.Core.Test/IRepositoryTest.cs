@@ -82,7 +82,7 @@ namespace DataApp.Core.Test
         {
             //arrange
             //act
-            var users = this.repository.GetAll();
+            var users = this.repository.Get();
             //assert
             Assert.IsNotNull(users);
         }
@@ -92,7 +92,7 @@ namespace DataApp.Core.Test
         {
             //arrange
             //act
-            var users = this.repository.GetAll(u => u.Id > 1);
+            var users = this.repository.Get(u => u.Id > 1);
             //assert
             Assert.IsNotNull(users);
         } 

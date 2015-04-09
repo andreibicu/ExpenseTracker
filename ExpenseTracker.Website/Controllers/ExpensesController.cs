@@ -21,6 +21,13 @@ namespace ExpenseTracker.Website.Controllers
         public async Task<ActionResult> Index()
         {
             var expenses = db.Expenses.Include(e => e.Voucher);
+
+            if (Request["search"] != null)
+            {
+                string query = (string)Request["search"].ToLower();
+                return View(await expenses.Where(p => p.Notes.ToLower().Contains(query)).ToListAsync());
+            }
+
             return View(await expenses.ToListAsync());
         }
 

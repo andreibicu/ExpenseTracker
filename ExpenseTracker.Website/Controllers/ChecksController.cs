@@ -20,7 +20,15 @@ namespace ExpenseTracker.Website.Controllers
         // GET: Checks
         public async Task<ActionResult> Index()
         {
-            ViewBag.TransactionAccounts = db.TransactionAccounts.ToList();
+            List<TransactionAccount> accounts = db.TransactionAccounts.ToList();
+            ViewBag.TransactionAccounts = accounts;
+            if (Request["search"] != null)
+            {
+                string query = (string)Request["search"].ToLower();
+                var result = await db.Checks.Where(p => p.Notes.ToLower().Contains(query)).ToListAsync();
+                return View();
+            }
+
             return View(await db.Checks.ToListAsync());
         }
 

@@ -20,6 +20,12 @@ namespace ExpenseTracker.Website.Controllers
         // GET: Projects
         public async Task<ActionResult> Index()
         {
+            if(Request["search"] != null)
+            {
+                string query = (string)Request["search"].ToLower();
+                return View(await db.Projects.Where(p => p.Name.ToLower().Contains(query) || p.Notes.ToLower().Contains(query)).ToListAsync());
+            }
+
             return View(await db.Projects.ToListAsync());
         }
 

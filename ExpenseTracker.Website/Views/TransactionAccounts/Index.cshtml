@@ -1,60 +1,112 @@
 ﻿@model IEnumerable<DataApp.Core.Models.TransactionAccount>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Transaction Accounts";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section style{
-    <style>
-        .inline-block {
-            display:inline-block;
-        }
-    </style>
-}
+@*@section style{
+
+}*@
 
 <h2> Transaction Accounts</h2>
 
 <div class="row search-bar" style="padding:6px 0 6px 0">
-    @*<div class="col-md-2">
-        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default btn-success" })
-    </div>*@
     <div class="col-md-12">
         @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default btn-success" })
         <form class="navbar-form navbar-right" role="form">
             <div class="form-group">
-                <input placeholder="Search" class="form-control" type="text">
+                <input id="search-string" placeholder="Search" class="form-control" type="text">
             </div>
-            <button type="submit" class="btn btn-primary">Find</button>
+            <a href="javascript:void(0)" id="search-btn" class="btn btn-primary">Find</a>
         </form>
     </div>
 </div>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table id="search-results" class="table">
+    <thead>
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th></th>
         </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section scripts{
+<script>
+    function TransactionAcccountSearchController(){
+        var self = this;
+
+        this.Init = function(){
+
+
+            self.HandleEvents();
+        }
+
+        this.HandleEvents = function(){
+            $('#search-btn').click(function () {
+                var searchString = $('#search-string').val();
+                self.FetchData(searchString);
+            });
+        }
+
+        this.FetchData = function (query) {
+            var counter = 0;
+            var url = '/api/transactionaccounts';
+
+            if(query !== ""){
+                url = url + "?query=" + query;
+            }
+
+            var jsonRequest = $.getJSON(url);
+
+            jsonRequest.done = function (data) {
+
+            }
+
+            $.getJSON(url)
+            .done(function (data) {
+                $('#search-results tbody').empty();
+                $.each(data, function (key, value) {
+                    console.log(value.Name);
+                    $('#search-results tbody').prepend('<tr><td>' + value.Name + '</td><td>'+ value.Notes +'</td><td>---</td></tr>');
+                });
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                console.log("failed request");
+            });
+
+        }
     }
 
-</table>
+    $(function () {
+        //load vehicle
+        var controller = new TransactionAcccountSearchController();
+        controller.Init();
+    });
+</script>
+}

@@ -1,15 +1,23 @@
 ﻿@model IEnumerable<DataApp.Core.Models.CheckTransaction>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Check Transactions";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Check Transactions</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="row search-bar" style="padding:6px 0 6px 0">
+    <div class="col-md-12">
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-default btn-success" })
+        <form class="navbar-form navbar-right" role="form" method="get">
+            <div class="form-group">
+                <input id="search-string" placeholder="Search" class="form-control" type="text" name="search">
+            </div>
+            <button type="submit" id="search-btn" class="btn btn-primary">Find</button>
+        </form>
+    </div>
+</div>
 <table class="table">
     <tr>
         <th>

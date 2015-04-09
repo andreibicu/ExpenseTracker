@@ -21,6 +21,13 @@ namespace ExpenseTracker.Website.Controllers
         public async Task<ActionResult> Index()
         {
             var checkTransactions = db.CheckTransactions.Include(c => c.Check).Include(c => c.Voucher);
+            List<TransactionAccount> accounts = db.TransactionAccounts.ToList();
+            ViewBag.TransactionAccounts = accounts;
+            if (Request["search"] != null)
+            {
+                string query = (string)Request["search"].ToLower();
+                return View(await checkTransactions.Where(p => p.Notes.ToLower().Contains(query)).ToListAsync());
+            }
             return View(await checkTransactions.ToListAsync());
         }
 
