@@ -9,7 +9,7 @@ using DataApp.Core.Models;
 
 namespace DataApp.Core.Controllers
 {
-    public class VoucherController : Controller<Voucher>, IAddData<Voucher>, IReadData<Voucher>, IModifyData<Voucher>
+    public class VoucherController : Controller<Voucher>, IAddData<Voucher>, IModifyData<Voucher> //, IReadData<Voucher>
     {
         public VoucherController(DataAppContext dbContext)
             :base(dbContext)

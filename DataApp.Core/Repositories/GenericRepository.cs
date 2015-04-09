@@ -41,23 +41,25 @@ namespace DataApp.Core.Repositories
             return true;
         }
 
-        public T Get(Func<T, bool> filter)
+        public void SaveChanges()
         {
-            return this.dbContext.Set<T>().AsNoTracking().FirstOrDefault(filter);
+            this.dbContext.SaveChanges();
+        } 
+
+        #region READ
+        public T Get(object id)
+        {
+            return this.dbContext.Set<T>().Find(id);
         }
 
-        public List<T> GetAll(Func<T, bool> filter = null)
+        public List<T> Get(Func<T, bool> filter = null)
         {
             if (filter == null)
                 return this.dbContext.Set<T>().AsNoTracking().ToList();
             else
                 return this.dbContext.Set<T>().AsNoTracking().Where(filter).ToList();
-        }
-
-        public void SaveChanges()
-        {
-            this.dbContext.SaveChanges();
         } 
+        #endregion
         #endregion
 
         #region CRUD ASYNC

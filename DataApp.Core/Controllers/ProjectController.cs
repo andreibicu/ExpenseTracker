@@ -9,7 +9,7 @@ using DataApp.Core.DAL;
 
 namespace DataApp.Core.Controllers
 {
-    public class ProjectController: Controller<Project>,IAddData<Project>,IReadData<Project>,IModifyData<Project>
+    public class ProjectController : Controller<Project>, IAddData<Project>, IModifyData<Project>//,IReadData<Project>
     {
         public ProjectController(DataAppContext dbContext)
             :base(dbContext)
@@ -26,14 +26,14 @@ namespace DataApp.Core.Controllers
             return this.repo.Update(entity);
         }
 
-        public Project Get(Func<Project, bool> filter)
+        public Project Get(object id)
         {
-            return this.repo.Get(filter);
+            return this.repo.Get(id);
         }
 
         public List<Project> GetAll(Func<Project, bool> filter = null)
         {
-            return this.repo.GetAll(filter);
+            return this.repo.Get(filter);
         }
     }
 }

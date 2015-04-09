@@ -8,7 +8,7 @@ using DataApp.Core.DAL;
 using DataApp.Core.Models;
 namespace DataApp.Core.Controllers
 {
-    public class CheckController : Controller<Check>, IAddData<Check>, IReadData<Check>, IModifyData<Check>
+    public class CheckController : Controller<Check>, IAddData<Check>, IModifyData<Check>//, IReadData<Check>
     {
         public CheckController(DataAppContext dbContext)
             :base(dbContext)

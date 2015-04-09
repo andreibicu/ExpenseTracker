@@ -8,7 +8,7 @@ using DataApp.Core.DAL;
 using DataApp.Core.Models;
 namespace DataApp.Core.Controllers
 {
-    public class TransactionAccountController : Controller<TransactionAccount>, IAddData<TransactionAccount>, IReadData<TransactionAccount>, IModifyData<TransactionAccount>
+    public class TransactionAccountController : Controller<TransactionAccount>, IAddData<TransactionAccount>//, IReadData<TransactionAccount>, IModifyData<TransactionAccount>
     {
         public TransactionAccountController(DataAppContext dbContext)
             :base(dbContext)
@@ -25,14 +25,14 @@ namespace DataApp.Core.Controllers
             return this.repo.Update(entity);
         }
 
-        public TransactionAccount Get(Func<TransactionAccount, bool> filter)
+        public TransactionAccount Get(object id)
         {
-            return this.repo.Get(filter);
+            return this.repo.Get(id);
         }
 
         public List<TransactionAccount> GetAll(Func<TransactionAccount, bool> filter = null)
         {
-            return this.repo.GetAll(filter);
+            return this.repo.Get(filter);
         }
     }
 }

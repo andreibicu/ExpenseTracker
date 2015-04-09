@@ -15,8 +15,11 @@ namespace DataApp.Core.Abstracts
 
     public interface IReadData<T> where T : class
     {
-        T Get(Func<T, Boolean> filter);
-        List<T> GetAll(Func<T, Boolean> filter = null);
+        //T Get(Func<T, Boolean> filter);
+        //List<T> GetAll(Func<T, Boolean> filter = null);
+
+        T Get(object id);
+        List<T> Get(Func<T, Boolean> filter = null);
     }
 
     public interface IModifyData<T> where T : class

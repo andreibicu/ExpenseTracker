@@ -8,7 +8,7 @@ using DataApp.Core.DAL;
 using DataApp.Core.Models;
 namespace DataApp.Core.Controllers
 {
-    public class ExpenseItemController : Controller<ExpenseItem>, IAddData<ExpenseItem>, IReadData<ExpenseItem>, IModifyData<ExpenseItem>
+    public class ExpenseItemController : Controller<ExpenseItem>, IAddData<ExpenseItem>, IModifyData<ExpenseItem>//, IReadData<ExpenseItem>
     {
         public ExpenseItemController(DataAppContext dbContext)
             :base(dbContext)

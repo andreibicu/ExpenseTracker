@@ -17,7 +17,7 @@ namespace DataApp.Core.Controllers
         {
             User user = null;
 
-            user = this.repo.Get(u => u.Username == username && u.Password == password);
+            //user = this.repo.Get(u => u.Username == username && u.Password == password);
 
             return user;
         }

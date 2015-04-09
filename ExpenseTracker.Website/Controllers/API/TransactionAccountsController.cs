@@ -21,7 +21,7 @@ namespace ExpenseTracker.Website.Controllers.API
         // GET: api/TransactionAccounts
         public IQueryable<TransactionAccount> Get()
         {
-            bool isSearching = false;
+            //bool isSearching = false;
 
             
 
