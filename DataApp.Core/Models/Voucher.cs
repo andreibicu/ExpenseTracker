@@ -11,7 +11,7 @@ namespace DataApp.Core.Models
     {
         public Voucher()
         {
-            this.CheckTransactions = new List<CheckTransaction>();
+            //this.CheckTransactions = new List<CheckTransaction>();
             this.Expenses = new List<Expense>();
         }
     
@@ -24,7 +24,7 @@ namespace DataApp.Core.Models
         public string Notes { get; set; }
         public int TransactionAccountId { get; set; }
 
-        public  List<CheckTransaction> CheckTransactions { get; set; }
+        //public  List<CheckTransaction> CheckTransactions { get; set; }
         public  List<Expense> Expenses { get; set; }
         //public virtual TransactionAccount TransactionAccount { get; set; }
         [NotMapped]

@@ -16,13 +16,13 @@ namespace DataApp.Core.Models
     {
         public Project()
         {
-            this.ExpenseItems = new List<ExpenseItem>();
+            this.Expenses = new List<Expense>();
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
         public string Notes { get; set; }
     
-        public  List<ExpenseItem> ExpenseItems { get; set; }
+        public  List<Expense> Expenses { get; set; }
     }
 }

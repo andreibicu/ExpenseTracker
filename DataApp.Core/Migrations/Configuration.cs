@@ -46,46 +46,18 @@ namespace DataApp.Core.Migrations
             context.SaveChanges();
             #endregion
 
-            #region Vouchers
-            context.Vouchers.AddOrUpdate(
+            #region CheckVoucher
+            context.CheckVouchers.AddOrUpdate(
                 u => u.Id,
-                new Voucher { Id = 1 ,AddedOn=DateTime.Now,IsExpense=false,IssuedOn=DateTime.Now,Notes="Default Voucher",TransactionAccountId=1}
+                new CheckVoucher { Id = 1, Notes = "N/A", Amount=0,CheckNo="N/A",DueDate=DateTime.Now.Date,EntryDate = DateTime.Now.Date }
             );
-
-            context.SaveChanges();
-            #endregion
-
-            #region Checks
-            context.Checks.AddOrUpdate(
-                u => u.Id,
-                new Check { Id = 1,AddedOn=DateTime.Now, Amount=0,Notes = "Default Check",TransactionAccountId=1}
-            );
-
-            context.SaveChanges();
-            #endregion
-
-            #region CheckTransactions
-            context.CheckTransactions.AddOrUpdate(
-                u => u.Id,
-                new CheckTransaction { Id = 1, Amount = 0, Notes = "Default Check Transaction",CheckId=1,VoucherId=1 }
-            );
-
             context.SaveChanges();
             #endregion
 
             #region Expenses
             context.Expenses.AddOrUpdate(
                 u => u.Id,
-                new Expense { Id = 1, VoucherId = 1 }
-            );
-
-            context.SaveChanges();
-            #endregion
-
-            #region ExpenseItems
-            context.ExpenseItems.AddOrUpdate(
-                u => u.Id,
-                new ExpenseItem { Id = 1, Amount = 0, Notes = "Default Expense Item", Category=Enums.ExpenseCategory.CashAdvance,ExpenseId = 1,ORNumber="NA",PurchaseDate=DateTime.Now,TransactionAccountId=1,ProjectId=1 }
+                new Expense { Id = 1, Notes = "N/A", Category=Enums.ExpenseCategory.MISC,CompanyId=1,ORNumber="N/A",ProjectId=1,PurchaseDate=DateTime.Now.Date,CheckVoucherID =1}
             );
 
             context.SaveChanges();

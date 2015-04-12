@@ -19,13 +19,13 @@ namespace DataApp.Core
         }
 
         public UserController UserController { get { return new UserController(this.dbContext); } }
-        public CheckController CheckController { get { return new CheckController(this.dbContext); } }
-        public VoucherController VoucherController { get { return new VoucherController(this.dbContext); } }
+        //public CheckController CheckController { get { return new CheckController(this.dbContext); } }
+        //public VoucherController VoucherController { get { return new VoucherController(this.dbContext); } }
         public ExpenseController ExpenseController { get { return new ExpenseController(this.dbContext); } }
         public ProjectController ProjectController { get { return new ProjectController(this.dbContext); } }
 
-        public CheckTransactionController CheckTransactionController { get { return new CheckTransactionController(this.dbContext); } }
-        public ExpenseItemController ExpenseItemController { get { return new ExpenseItemController(this.dbContext); } }
+        //public CheckTransactionController CheckTransactionController { get { return new CheckTransactionController(this.dbContext); } }
+        //public ExpenseItemController ExpenseItemController { get { return new ExpenseItemController(this.dbContext); } }
 
         public TransactionAccountController TransactionAccountController { get { return new TransactionAccountController(this.dbContext); } }
 
