@@ -1,8 +1,9 @@
 ﻿@model IEnumerable<DataApp.Core.Models.Expense>
-
+@using DataApp.Core.Models
 @{
-    ViewBag.Title = "Expenses";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<TransactionAccount> accounts = (List<TransactionAccount>)ViewBag.TransactionAccounts;
 }
 
 <h2>Expenses</h2>
@@ -20,8 +21,26 @@
 </div>
 <table class="table">
     <tr>
+        <th>CheckNo</th>
         <th>
-            @Html.DisplayNameFor(model => model.Voucher.Notes)
+            Project</th>
+        <th>
+            @Html.DisplayNameFor(model => model.PurchaseDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ORNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            Company
         </th>
         <th></th>
     </tr>
@@ -29,10 +48,28 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.CheckVoucher.CheckNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Project.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchaseDate)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Notes)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Voucher.Notes)
+            @Html.DisplayFor(modelItem => item.ORNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category)
+        </td>
+        <td>
+            @accounts.SingleOrDefault(acc => acc.Id == item.CompanyId).Name
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

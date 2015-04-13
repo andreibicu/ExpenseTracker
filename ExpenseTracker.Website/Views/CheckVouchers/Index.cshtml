@@ -1,13 +1,13 @@
-﻿@model IEnumerable<DataApp.Core.Models.Voucher>
+﻿@model IEnumerable<DataApp.Core.Models.CheckVoucher>
 @using DataApp.Core.Models
 @{
-    ViewBag.Title = "Vouchers";
+    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
     List<TransactionAccount> accounts = (List<TransactionAccount>)ViewBag.TransactionAccounts;
+    
 }
 
-<h2>Vouchers</h2>
+<h2>CheckVouchers</h2>
 
 <div class="row search-bar" style="padding:6px 0 6px 0">
     <div class="col-md-12">
@@ -23,20 +23,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.IsExpense)
+            @Html.DisplayNameFor(model => model.Amount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AddedOn)
+            @Html.DisplayNameFor(model => model.DueDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IssuedOn)
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VoucherNo)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Notes)
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.TransactionAccountId)*@
-            For(Account)
+            Payee
         </th>
         <th></th>
     </tr>
@@ -44,20 +49,25 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.IsExpense)
+            @Html.DisplayFor(modelItem => item.Amount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AddedOn)
+            @Html.DisplayFor(modelItem => item.DueDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IssuedOn)
+            @Html.DisplayFor(modelItem => item.EntryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VoucherNo)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Notes)
         </td>
         <td>
-            @*@Html.DisplayFor(modelItem => item.TransactionAccountId)*@
-            @accounts.SingleOrDefault(acc => acc.Id == item.TransactionAccountId).Name
+            @accounts.SingleOrDefault(acc => acc.Id == item.PayeeId).Name
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

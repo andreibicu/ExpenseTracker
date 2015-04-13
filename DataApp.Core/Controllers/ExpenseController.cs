@@ -29,17 +29,37 @@ namespace DataApp.Core.Controllers
         {
             Expense check = null;
 
-            check = this.dbContext.Expenses.Include("ExpenseItems").SingleOrDefault(filter);
+            check = this.dbContext.Expenses.Include("Project").Include("CheckVoucher").SingleOrDefault(filter);
 
             return check;
         }
 
         public List<Expense> GetAll(Func<Expense, bool> filter = null)
         {
-            if (filter == null)
-                return this.dbContext.Expenses.Include("ExpenseItems").ToList();
+            List<Expense> expenses = new List<Expense>();
 
-            return this.dbContext.Expenses.Include("ExpenseItems").Where(filter).ToList();
+            if (filter != null)
+            {
+                expenses = this.dbContext.Expenses.Include("Project").Include("CheckVoucher").Where(filter).ToList();
+                return expenses;
+            }
+
+            expenses = this.dbContext.Expenses.Include("Project").Include("CheckVoucher").ToList();
+            return expenses;
+        }
+
+        public List<Expense> Find(string query)
+        {
+            var expenses = this.GetAll(e => e.Notes.ToLower().Contains(query) || e.ORNumber.ToLower().Contains(query) || e.Project.Name.ToLower().Contains(query));
+
+            return expenses;
+        }
+
+        public void Delete(int id)
+        {
+            var entity = dbContext.Expenses.Find(id);
+            dbContext.Expenses.Remove(entity);
+            dbContext.SaveChanges();
         }
     }
 }

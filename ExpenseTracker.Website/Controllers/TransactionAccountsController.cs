@@ -9,18 +9,20 @@ using System.Web;
 using System.Web.Mvc;
 using DataApp.Core.DAL;
 using DataApp.Core.Models;
+using DataApp.Core;
 
 namespace ExpenseTracker.Website.Controllers
 {
     [Authorize]
     public class TransactionAccountsController : Controller
     {
-        private DataAppContext db = new DataAppContext();
+        private DataAppFacade db = new DataAppFacade();
 
         // GET: TransactionAccounts
         public async Task<ActionResult> Index()
         {
-            return View(await db.TransactionAccounts.ToListAsync());
+            //return View(await db.TransactionAccounts.ToListAsync());
+            return View(db.TransactionAccountController.GetAll());
         }
 
         // GET: TransactionAccounts/Details/5
@@ -30,7 +32,7 @@ namespace ExpenseTracker.Website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TransactionAccount transactionAccount = await db.TransactionAccounts.FindAsync(id);
+            TransactionAccount transactionAccount = db.TransactionAccountController.Get(id); //await db.TransactionAccounts.FindAsync(id);
             if (transactionAccount == null)
             {
                 return HttpNotFound();
@@ -44,17 +46,15 @@ namespace ExpenseTracker.Website.Controllers
             return View();
         }
 
-        // POST: TransactionAccounts/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Name,Notes")] TransactionAccount transactionAccount)
         {
             if (ModelState.IsValid)
             {
-                db.TransactionAccounts.Add(transactionAccount);
-                await db.SaveChangesAsync();
+                //db.TransactionAccounts.Add(transactionAccount);
+                //await db.SaveChangesAsync();
+                db.TransactionAccountController.Add(transactionAccount);
                 return RedirectToAction("Index");
             }
 
@@ -68,7 +68,7 @@ namespace ExpenseTracker.Website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TransactionAccount transactionAccount = await db.TransactionAccounts.FindAsync(id);
+            TransactionAccount transactionAccount = db.TransactionAccountController.Get(id); //await db.TransactionAccounts.FindAsync(id);
             if (transactionAccount == null)
             {
                 return HttpNotFound();
@@ -85,8 +85,9 @@ namespace ExpenseTracker.Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(transactionAccount).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                //db.Entry(transactionAccount).State = EntityState.Modified;
+                //await db.SaveChangesAsync();
+                this.db.TransactionAccountController.Update(transactionAccount);
                 return RedirectToAction("Index");
             }
             return View(transactionAccount);
@@ -99,7 +100,7 @@ namespace ExpenseTracker.Website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TransactionAccount transactionAccount = await db.TransactionAccounts.FindAsync(id);
+            TransactionAccount transactionAccount = this.db.TransactionAccountController.Get(id); //await db.TransactionAccounts.FindAsync(id);
             if (transactionAccount == null)
             {
                 return HttpNotFound();
@@ -112,9 +113,10 @@ namespace ExpenseTracker.Website.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            TransactionAccount transactionAccount = await db.TransactionAccounts.FindAsync(id);
-            db.TransactionAccounts.Remove(transactionAccount);
-            await db.SaveChangesAsync();
+            //TransactionAccount transactionAccount = await db.TransactionAccounts.FindAsync(id);
+            //db.TransactionAccounts.Remove(transactionAccount);
+            //await db.SaveChangesAsync();
+            this.db.TransactionAccountController.Delete(id);
             return RedirectToAction("Index");
         }
 

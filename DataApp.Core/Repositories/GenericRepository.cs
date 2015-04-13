@@ -28,15 +28,15 @@ namespace DataApp.Core.Repositories
 
         public bool Delete(T entity)
         {
-            this.dbContext.Set<T>().Attach(entity);
-            this.dbContext.Entry<T>(entity).State = EntityState.Modified;
+            this.dbContext.Set<T>().Remove(entity);
             this.SaveChanges();
             return true;
         }
 
         public bool Update(T entity)
         {
-            this.dbContext.Set<T>().Remove(entity);
+            this.dbContext.Set<T>().Attach(entity);
+            this.dbContext.Entry<T>(entity).State = EntityState.Modified;
             this.SaveChanges();
             return true;
         }

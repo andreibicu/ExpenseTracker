@@ -9,13 +9,14 @@ using System.Web;
 using System.Web.Mvc;
 using DataApp.Core.DAL;
 using DataApp.Core.Models;
+using DataApp.Core;
 
 namespace ExpenseTracker.Website.Controllers
 {
     [Authorize]
     public class ProjectsController : Controller
     {
-        private DataAppContext db = new DataAppContext();
+        private DataAppFacade db = new DataAppFacade();
 
         // GET: Projects
         public async Task<ActionResult> Index()
@@ -23,10 +24,11 @@ namespace ExpenseTracker.Website.Controllers
             if(Request["search"] != null)
             {
                 string query = (string)Request["search"].ToLower();
-                return View(await db.Projects.Where(p => p.Name.ToLower().Contains(query) || p.Notes.ToLower().Contains(query)).ToListAsync());
+                //return View(await db.Projects.Where(p => p.Name.ToLower().Contains(query) || p.Notes.ToLower().Contains(query)).ToListAsync());
+                return View(this.db.ProjectController.Find(query));
             }
 
-            return View(await db.Projects.ToListAsync());
+            return View(this.db.ProjectController.GetAll()); //View(await db.Projects.ToListAsync());
         }
 
         // GET: Projects/Details/5
@@ -36,7 +38,7 @@ namespace ExpenseTracker.Website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
+            Project project = this.db.ProjectController.Get(id); // await db.Projects.FindAsync(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -59,8 +61,9 @@ namespace ExpenseTracker.Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Projects.Add(project);
-                await db.SaveChangesAsync();
+                //db.Projects.Add(project);
+                //await db.SaveChangesAsync();
+                db.ProjectController.Add(project);
                 return RedirectToAction("Index");
             }
 
@@ -74,7 +77,7 @@ namespace ExpenseTracker.Website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
+            Project project = this.db.ProjectController.Get(id); //await db.Projects.FindAsync(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -91,8 +94,9 @@ namespace ExpenseTracker.Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(project).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                //db.Entry(project).State = EntityState.Modified;
+                //await db.SaveChangesAsync();
+                this.db.ProjectController.Update(project);
                 return RedirectToAction("Index");
             }
             return View(project);
@@ -105,7 +109,7 @@ namespace ExpenseTracker.Website.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Project project = await db.Projects.FindAsync(id);
+            Project project = this.db.ProjectController.Get(id);//await db.Projects.FindAsync(id);
             if (project == null)
             {
                 return HttpNotFound();
@@ -118,9 +122,10 @@ namespace ExpenseTracker.Website.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
         {
-            Project project = await db.Projects.FindAsync(id);
-            db.Projects.Remove(project);
-            await db.SaveChangesAsync();
+            //Project project = await db.Projects.FindAsync(id);
+            //db.Projects.Remove(project);
+            //await db.SaveChangesAsync();
+            this.db.ProjectController.Delete(id);
             return RedirectToAction("Index");
         }
 

@@ -49,7 +49,7 @@ namespace DataApp.Core.Migrations
             #region CheckVoucher
             context.CheckVouchers.AddOrUpdate(
                 u => u.Id,
-                new CheckVoucher { Id = 1, Notes = "N/A", Amount=0,CheckNo="N/A",DueDate=DateTime.Now.Date,EntryDate = DateTime.Now.Date }
+                new CheckVoucher { Id = 1, Notes = "N/A", Amount=0,CheckNo="N/A",DueDate=DateTime.Now.Date,EntryDate = DateTime.Now.Date,PayeeId=1 }
             );
             context.SaveChanges();
             #endregion

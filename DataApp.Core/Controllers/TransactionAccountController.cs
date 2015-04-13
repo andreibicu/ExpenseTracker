@@ -34,5 +34,19 @@ namespace DataApp.Core.Controllers
         {
             return this.repo.Get(filter);
         }
+
+        public List<TransactionAccount> Find(string name)
+        {
+            var accounts = this.GetAll(a => a.Name.ToLower().Contains(name));
+
+            return accounts;
+        }
+
+        public void Delete(int id)
+        {
+            var entity = dbContext.TransactionAccounts.Find(id);
+            dbContext.TransactionAccounts.Remove(entity);
+            dbContext.SaveChanges();
+        }
     }
 }

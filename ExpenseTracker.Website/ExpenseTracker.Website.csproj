@@ -172,6 +172,8 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\API\TransactionAccountsController.cs" />
+    <Compile Include="Controllers\CheckVouchersController.cs" />
+    <Compile Include="Controllers\ExpensesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
@@ -243,26 +245,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Checks\Create.cshtml" />
-    <Content Include="Views\Checks\Delete.cshtml" />
-    <Content Include="Views\Checks\Details.cshtml" />
-    <Content Include="Views\Checks\Edit.cshtml" />
-    <Content Include="Views\Checks\Index.cshtml" />
-    <Content Include="Views\CheckTransactions\Create.cshtml" />
-    <Content Include="Views\CheckTransactions\Delete.cshtml" />
-    <Content Include="Views\CheckTransactions\Details.cshtml" />
-    <Content Include="Views\CheckTransactions\Edit.cshtml" />
-    <Content Include="Views\CheckTransactions\Index.cshtml" />
     <Content Include="Views\Expenses\Create.cshtml" />
     <Content Include="Views\Expenses\Delete.cshtml" />
     <Content Include="Views\Expenses\Details.cshtml" />
     <Content Include="Views\Expenses\Edit.cshtml" />
     <Content Include="Views\Expenses\Index.cshtml" />
-    <Content Include="Views\ExpenseItems\Create.cshtml" />
-    <Content Include="Views\ExpenseItems\Delete.cshtml" />
-    <Content Include="Views\ExpenseItems\Details.cshtml" />
-    <Content Include="Views\ExpenseItems\Edit.cshtml" />
-    <Content Include="Views\ExpenseItems\Index.cshtml" />
     <Content Include="Views\Projects\Create.cshtml" />
     <Content Include="Views\Projects\Delete.cshtml" />
     <Content Include="Views\Projects\Details.cshtml" />
@@ -273,11 +260,11 @@
     <Content Include="Views\TransactionAccounts\Details.cshtml" />
     <Content Include="Views\TransactionAccounts\Edit.cshtml" />
     <Content Include="Views\TransactionAccounts\Index.cshtml" />
-    <Content Include="Views\Vouchers\Create.cshtml" />
-    <Content Include="Views\Vouchers\Delete.cshtml" />
-    <Content Include="Views\Vouchers\Details.cshtml" />
-    <Content Include="Views\Vouchers\Edit.cshtml" />
-    <Content Include="Views\Vouchers\Index.cshtml" />
+    <Content Include="Views\CheckVouchers\Create.cshtml" />
+    <Content Include="Views\CheckVouchers\Delete.cshtml" />
+    <Content Include="Views\CheckVouchers\Details.cshtml" />
+    <Content Include="Views\CheckVouchers\Edit.cshtml" />
+    <Content Include="Views\CheckVouchers\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

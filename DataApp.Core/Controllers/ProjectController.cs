@@ -35,5 +35,19 @@ namespace DataApp.Core.Controllers
         {
             return this.repo.Get(filter);
         }
+
+        public List<Project> Find(string name)
+        {
+            var projects = this.GetAll(p => p.Name.ToLower().Contains(name));
+
+            return projects;
+        }
+
+        public void Delete(int id)
+        {
+            var entity = dbContext.Projects.Find(id);
+            dbContext.Projects.Remove(entity);
+            dbContext.SaveChanges();
+        }
     }
 }
